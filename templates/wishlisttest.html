@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<body  style="background-color:powderblue;">
+
+<h1 style="color:green; text-align:center; font-family:verdana; font-size: 50px;">Wishlists</h1>
+
+<br>
+<br>
+<br>
+
+<form method="get" action="/wishlist">
+  Title:
+  <input type="text" name="title"><br>
+  Author:
+  <input type="text" name="author"><br>
+  <input type="submit" value="Search">
+</form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+#wishlistButtonWrapper {
+  border: 1px solid red;
+  width: 235px;
+  text-align: center;
+  margin: 0 auto;
+}
+#wishlistButton {
+  width: 75px;
+  height: 25px;
+}
+
+
+
+#wishlistWrapper {
+  width: 100%;
+  border: 1px solid red;
+  text-align: center;
+}
+#firstWishlist{
+  width: 100px;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightgreen;
+  border: 1px solid purple;
+  position: absolute;
+
+}
+#secondWishlist {
+  width: 100px;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightyellow;
+  border: 1px solid purple;
+  margin: 0 auto;
+}
+#thirdWishlist {
+  width: 100px;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  border: 1px solid purple;
+}
+
+#firstName {
+  float: left;
+  position: relative;
+}
+#secondName {
+  margin: 0 auto;
+  position: relative;
+}
+#thirdName {
+  float: right;
+  position: relative;
+}
+</style>
+</head>
+<body>
+
+<br>
+<br>
+
+
+<div id="wishlistButtonWrapper">
+    <!-- <button onclick="firstWishlist()" id="wishlistButton">First</button> -->
+  <button onclick="addWishlist()" id="wishlistButton">Add</button>
+  <button onclick="removeWishlist()" id="wishlistButton">Remove</button>
+</div>
+
+<div id="wishlistWrapper">
+  <div id="firstName">
+    FIRST NAME
+    <div id="firstWishlist">
+      first
+    </div>
+  </div>
+  <div id="thirdName" style="display:none">
+    THIRD NAME
+    <div id="thirdWishlist">
+      third
+    </div>
+  </div>
+  <div id="secondName" style="display:none">
+    SECOND NAME
+    <div id="secondWishlist">
+      second
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+/*function firstWishlist() {
+  var x = document.getElementById("firstWishlist");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+
+} */
+function addWishlist() { // add wishlists
+  var two = document.getElementById("secondName");
+  var third = document.getElementById("thirdName");
+
+  if (two.style.display === "none") {
+    two.style.display = "block";
+  } else if (two.style.display === "block" && third.style.display === "none"){
+    third.style.display = "block"
+  }
+
+}
+function removeWishlist() { //remove wishlists
+  var two = document.getElementById("secondName");
+  var third = document.getElementById("thirdName");
+  if (two.style.display === "block" && third.style.display === "block") {
+    third.style.display = "none";
+  } else{
+    two.style.display = "none";
+  }
+}
+</script>
+
+
+</body>
+</html>
