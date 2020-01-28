@@ -1,5 +1,5 @@
  **Part 1 - Book Browsing and Sorting:** Luis \
- **Part 2 - Profile Management:** Ino \
+ **Part 2 - Profile Management:** Daniel \
  **Part 3 - Shopping Cart:** Jessela \
  **Part 4 - Book Details:** Edward \
  **Part 5 - Book Rating and Commenting:**  Stephan\
