@@ -28,13 +28,17 @@ function query(search_for){
   var matches = []; //stores all matches from query
   for (i = 0; i <= database.length - 1; i++){
 
-    if(matches.length >= 0 && database[i].includes(search_for)){
+    //Changing everything to uppercase in order to ignore case
+    var databaseUpper = database[i].toUpperCase();
+    var searchUpper = search_for.toUpperCase();
+
+    if(matches.length >= 0 && databaseUpper.includes(searchUpper)){
       matches.push(database[i]);
     }
   }
 
-  // If there are not matches
-  if (matches.length == 0){
+  // If there are no matches and search_for is defined/present
+  if (matches.length == 0 && search_for != undefined){
     alert("There are no results for that query.");
   }
   return matches.reverse();
@@ -61,10 +65,11 @@ function addRow(column1, column2, column3, column4){
 </script>
 
 <style>
-table, td {
+table, td{
   border: 1px solid black;
   text-align: center;
 }
+
 </style>
 
 <table id="resultstable">
@@ -97,7 +102,6 @@ for(i = matches.length - 1; i >= 0; i--){
 <style>
 #wishlistWrapper {
   width: 100%;
-  /*border: 1px solid red;*/
   text-align: center;
 }
 #wishlist1 {
@@ -120,10 +124,12 @@ for(i = matches.length - 1; i >= 0; i--){
 Insert name of wishlist to create:
 <input type="text" id="wishlistname">
 <button onclick="addWishlist()">Add Wishlist</button>
+<button onclick="removeWishlist()">Remove Wishlist</button>
 
 <div id="wishlistWrapper">
   <table id="wishlist1" style="display:none">
     <tr>
+      <td></td>
     </tr>
   </table>
   <table id="wishlist3" style="display:none">
@@ -184,16 +190,50 @@ function addWishlist(){
 
 }
 
+function clearTable(wishlistName){
+  //Clears all content (except the header) of a table
+  // wishlistName (String) : name of table you would like to clear the content of.
+
+  var wishlistTableRows = document.getElementById(wishlistName).tBodies[0].rows.length;
+
+  for ( i = wishlistTableRows -1; i >= 1; i--){ // i >= 1 as to not delete the the title of the cell which acts like a innerHTML placeholder.
+    var wishlistTableRows = document.getElementById(wishlistName).tBodies[0].rows.length;
+    document.getElementById(wishlistName).deleteRow(i);
+  }
+}
+
   function removeWishlist(){
-    //hides selected wishlists
-    //clears all cells of text
+    //Removes wishlist
+
+    var tableName = document.getElementById("wishlistname").value
+
+    var wishlist1Table = document.getElementById("wishlist1");
+    var wishlist2Table = document.getElementById("wishlist2");
+    var wishlist3Table = document.getElementById("wishlist3");
+
+    var wishlist1TableTitle = document.getElementById("wishlist1").rows[0].innerHTML;
+    var wishlist2TableTitle = document.getElementById("wishlist2").rows[0].innerHTML;
+    var wishlist3TableTitle = document.getElementById("wishlist3").rows[0].innerHTML;
+
+    if (tableName === wishlist1TableTitle){
+      wishlist1Table.style.display = "none";
+      clearTable("wishlist1")
+    } else if (tableName === wishlist2TableTitle){
+      wishlist2Table.style.display = "none";
+      clearTable("wishlist2")
+    } else if (tableName === wishlist3TableTitle){
+      wishlist3Table.style.display = "none";
+      clearTable("wishlist3")
+    } else {
+      alert("There are no tables with that name!");
+    }
   }
 
   function addToWishlist(){
 
-    var wishlist1table = document.getElementById("wishlist1");
-    var wishlist2table = document.getElementById("wishlist2");
-    var wishlist3table = document.getElementById("wishlist3");
+    var wishlist1Table = document.getElementById("wishlist1");
+    var wishlist2Table = document.getElementById("wishlist2");
+    var wishlist3Table = document.getElementById("wishlist3");
 
     //Keeps track of what books should be added to which wishlist
     wishlist1items = [];
@@ -219,30 +259,35 @@ function addWishlist(){
         }
       }
 
-      console.log("One: " + wishlist1items);
-      console.log("Two: " +wishlist2items);
-      console.log("Three: " +wishlist3items);
-
-      console.log("Hello World!");
-      for (i = 0; i <= wishlist1items.length - 1; i++){
-        console.log("Hello World!");
-        var row = wishlist1table.insertRow(1);
-        var cell1 = row.insertCell(0);
-        cell1.innerHTML = wishlist1items[i];
+      if(wishlist1items.length > 0 && wishlist1Table.style.display === "block"){
+        for (i = 0; i <= wishlist1items.length - 1; i++){
+          var row = wishlist1Table.insertRow(1);
+          var cell1 = row.insertCell(0);
+          cell1.innerHTML = wishlist1items[i];
+        }
+      } else if (wishlist1items.length > 0 && wishlist1Table.style.display === "none"){
+        alert("Wishlist 1 does not exist, please create it below.");
       }
 
-      for (i = 0; i <= wishlist2items.length - 1; i++){
-        console.log("Hello World!");
-        var row = wishlist2table.insertRow(1);
-        var cell1 = row.insertCell(0);
-        cell1.innerHTML = wishlist2items[i];
+
+      if(wishlist2items.length > 0 && wishlist2Table.style.display === "block"){
+        for (i = 0; i <= wishlist2items.length - 1; i++){
+          var row = wishlist2Table.insertRow(1);
+          var cell1 = row.insertCell(0);
+          cell1.innerHTML = wishlist2items[i];
+        }
+      } else if (wishlist2items.length > 0 && wishlist2Table.style.display === "none"){
+        alert("Wishlist 2 does not exist, please create it below.");
       }
 
-      for (i = 0; i <= wishlist3items.length - 1; i++){
-        console.log("Hello World!");
-        var row = wishlist3table.insertRow(1);
-        var cell1 = row.insertCell(0);
-        cell1.innerHTML = wishlist3items[i];
+      if(wishlist3items.length > 0 && wishlist3Table.style.display === "block"){
+        for (i = 0; i <= wishlist3items.length - 1; i++){
+          var row = wishlist3Table.insertRow(1);
+          var cell1 = row.insertCell(0);
+          cell1.innerHTML = wishlist3items[i];
+        }
+      } else if (wishlist3items.length > 0 && wishlist3Table.style.display === "none"){
+        alert("Wishlist 3 does not exist, please create it below.");
       }
 
 
