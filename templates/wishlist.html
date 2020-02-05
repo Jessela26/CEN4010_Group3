@@ -4,7 +4,7 @@
 <h1 style="color:green; text-align:center; font-family:verdana; font-size: 50px;">Wishlists</h1>
 
 <form method="get" action="/wishlist">
-  Search for:
+  Search product directory:
   <input type="text" name="search">
   <input type="submit" value="Search">
 </form>
@@ -24,13 +24,15 @@ function query(search_for){
   //find all matches of the user's input within the database
   // search_for (String): what to query for
 
+  if (search_for != undefined){
+    var searchUpper = search_for.toUpperCase();
+  }
 
   var matches = []; //stores all matches from query
   for (i = 0; i <= database.length - 1; i++){
 
     //Changing everything to uppercase in order to ignore case
     var databaseUpper = database[i].toUpperCase();
-    var searchUpper = search_for.toUpperCase();
 
     if(matches.length >= 0 && databaseUpper.includes(searchUpper)){
       matches.push(database[i]);
@@ -105,23 +107,25 @@ for(i = matches.length - 1; i >= 0; i--){
   text-align: center;
 }
 #wishlist1 {
-  width: 100px;
+  width: 150px;
   float: left;
   position: relative;
 }
 #wishlist2 {
-  width: 100px;
+  width: 150px;
   margin: 0 auto;
   position: relative;
 }
 #wishlist3 {
-  width: 100px;
+  width: 150px;
   float: right;
   position: relative;
 }
+
+
 </style>
 
-Insert name of wishlist to create:
+Insert name of wishlist to add/remove:
 <input type="text" id="wishlistname">
 <button onclick="addWishlist()">Add Wishlist</button>
 <button onclick="removeWishlist()">Remove Wishlist</button>
@@ -129,17 +133,17 @@ Insert name of wishlist to create:
 <div id="wishlistWrapper">
   <table id="wishlist1" style="display:none">
     <tr>
-      <td></td>
+      <td>This is the title of Wishlist 1</td>
     </tr>
   </table>
   <table id="wishlist3" style="display:none">
     <tr>
-      <td>Title</td>
+      <td>This is the title of Wishlist 2</td>
     </tr>
   </table>
   <table id="wishlist2" style="display:none">
     <tr>
-      <td>Title</td>
+      <td>This is the title of Wishlist 3</td>
     </tr>
   </table>
 </div>
@@ -147,7 +151,7 @@ Insert name of wishlist to create:
 <script>
 function changeTitle(tableName, innerHTML){
   var tableTitle = document.getElementById(tableName).rows[0];
-  tableTitle.innerHTML = innerHTML;
+  tableTitle.innerHTML = '<td colspan="2">' + innerHTML + "</td>";
 }
 
 function hideTable(tableName){
@@ -158,6 +162,12 @@ function hideTable(tableName){
 function addWishlist(){
 
   var tableName = document.getElementById("wishlistname").value
+
+  if (tableName === ""){
+    alert("Please put a name in order to add a wishlist.");
+    return -1;
+  }
+
 
   var wishlist1table = document.getElementById("wishlist1")
   var wishlist2table = document.getElementById("wishlist2")
@@ -194,6 +204,8 @@ function clearTable(wishlistName){
   //Clears all content (except the header) of a table
   // wishlistName (String) : name of table you would like to clear the content of.
 
+  document.getElementById(wishlistName).rows[0].cells[0].innerHTML = "";
+
   var wishlistTableRows = document.getElementById(wishlistName).tBodies[0].rows.length;
 
   for ( i = wishlistTableRows -1; i >= 1; i--){ // i >= 1 as to not delete the the title of the cell which acts like a innerHTML placeholder.
@@ -205,15 +217,15 @@ function clearTable(wishlistName){
   function removeWishlist(){
     //Removes wishlist
 
-    var tableName = document.getElementById("wishlistname").value
+    var tableName = document.getElementById("wishlistname").value.toUpperCase();
 
     var wishlist1Table = document.getElementById("wishlist1");
     var wishlist2Table = document.getElementById("wishlist2");
     var wishlist3Table = document.getElementById("wishlist3");
 
-    var wishlist1TableTitle = document.getElementById("wishlist1").rows[0].innerHTML;
-    var wishlist2TableTitle = document.getElementById("wishlist2").rows[0].innerHTML;
-    var wishlist3TableTitle = document.getElementById("wishlist3").rows[0].innerHTML;
+    var wishlist1TableTitle = document.getElementById("wishlist1").rows[0].cells[0].innerHTML.toUpperCase();
+    var wishlist2TableTitle = document.getElementById("wishlist2").rows[0].cells[0].innerHTML.toUpperCase();
+    var wishlist3TableTitle = document.getElementById("wishlist3").rows[0].cells[0].innerHTML.toUpperCase();
 
     if (tableName === wishlist1TableTitle){
       wishlist1Table.style.display = "none";
@@ -228,6 +240,59 @@ function clearTable(wishlistName){
       alert("There are no tables with that name!");
     }
   }
+
+  function addToShoppingCart(product, table){
+    // sends product to shopping cart via query then removes product from wishlist.
+
+    var deletion = true;
+
+    if (table === "wishlist1"){
+
+      var wishlist1Table = document.getElementById(table);
+      var table = wishlist1Table.rows;
+
+      for (i = wishlist1Table.rows.length - 1; i >= 1; i--){
+
+        var titleCell = table[i].cells[0];
+
+        if (product === titleCell.innerHTML && deletion === true){
+          var deletion = false;
+          console.log(product + " has been removed from " + " wishlist1 and added to Shopping Cart"); //replace with actual query
+          wishlist1Table.deleteRow(i);
+        }
+
+      } //end of for statement
+
+    } else if (table === "wishlist2"){
+      var wishlist2Table = document.getElementById(table);
+      var table = wishlist2Table.rows;
+
+      for (i = 1; i <= wishlist2Table.rows.length - 1; i++){
+
+        var titleCell = table[i].cells[0];
+
+        if (product === titleCell.innerHTML && deletion === true){
+          var deletion = false;
+          console.log(product + " has been removed from " + " wishlist2 and added to Shopping Cart"); //replace with actual query
+          wishlist2Table.deleteRow(i);
+        } //end of if statement
+      }  //end of for statement
+    } else if (table === "wishlist3"){
+      var wishlist3Table = document.getElementById(table);
+      var table = wishlist3Table.rows;
+
+      for (i = 1; i <= wishlist3Table.rows.length - 1; i++){
+
+        var titleCell = table[i].cells[0];
+
+        if (product === titleCell.innerHTML && deletion === true){
+          var deletion = false;
+          console.log(product + " has been removed from " + " wishlist3 and added to Shopping Cart"); //replace with actual query
+          wishlist3Table.deleteRow(i);
+          }
+        }
+      }
+  } //end of addToShoppingCart()
 
   function addToWishlist(){
 
@@ -262,8 +327,12 @@ function clearTable(wishlistName){
       if(wishlist1items.length > 0 && wishlist1Table.style.display === "block"){
         for (i = 0; i <= wishlist1items.length - 1; i++){
           var row = wishlist1Table.insertRow(1);
+
           var cell1 = row.insertCell(0);
           cell1.innerHTML = wishlist1items[i];
+
+          var cell2 = row.insertCell(1);
+          cell2.innerHTML = '<button type="button" id="' + cell1.innerHTML + 'addToCartButton" onclick="addToShoppingCart(\'' + cell1.innerHTML + '\', ' + "'wishlist1'" + ')">Add To Shopping Cart</button>';
         }
       } else if (wishlist1items.length > 0 && wishlist1Table.style.display === "none"){
         alert("Wishlist 1 does not exist, please create it below.");
@@ -273,8 +342,12 @@ function clearTable(wishlistName){
       if(wishlist2items.length > 0 && wishlist2Table.style.display === "block"){
         for (i = 0; i <= wishlist2items.length - 1; i++){
           var row = wishlist2Table.insertRow(1);
+
           var cell1 = row.insertCell(0);
           cell1.innerHTML = wishlist2items[i];
+
+          var cell2 = row.insertCell(1);
+          cell2.innerHTML = '<button type="button" id="' + cell1.innerHTML + 'addToCartButton" onclick="addToShoppingCart(\'' + cell1.innerHTML + '\', ' + "'wishlist2'" + ')">Add To Shopping Cart</button>';
         }
       } else if (wishlist2items.length > 0 && wishlist2Table.style.display === "none"){
         alert("Wishlist 2 does not exist, please create it below.");
@@ -283,8 +356,12 @@ function clearTable(wishlistName){
       if(wishlist3items.length > 0 && wishlist3Table.style.display === "block"){
         for (i = 0; i <= wishlist3items.length - 1; i++){
           var row = wishlist3Table.insertRow(1);
+
           var cell1 = row.insertCell(0);
           cell1.innerHTML = wishlist3items[i];
+
+          var cell2 = row.insertCell(1);
+          cell2.innerHTML = '<button type="button" id="' + cell1.innerHTML + 'addToCartButton" onclick="addToShoppingCart(\'' + cell1.innerHTML + '\', ' + "'wishlist3'" + ')">Add To Shopping Cart</button>';
         }
       } else if (wishlist3items.length > 0 && wishlist3Table.style.display === "none"){
         alert("Wishlist 3 does not exist, please create it below.");
