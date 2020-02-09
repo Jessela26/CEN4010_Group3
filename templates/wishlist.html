@@ -1,0 +1,47 @@
+<html>
+<body  style="background-color:powderblue;">
+<h1 style="color:green; text-align:center; font-family:verdana; font-size: 50px;">Wishlists</h1>
+
+
+<p id="p1">Hello World!</p>
+
+
+<form method="get" action="/wishlist">
+  Search for:
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form>
+
+
+<script>
+document.getElementById("p1").innerHTML = "New text!";
+
+
+
+var database = ["Flat Stanley by John Cena", "The Never Ending Story by Elvis Presley"];
+
+document.getElementById("p1").innerHTML = "Newer test!";
+
+function query(search_for){
+  //find all matches of the user's input within the database
+  // search_for (String): what to query for
+
+  var matches = []; //stores all matches from query
+  for (i = 0; i <= database.length - 1; i++){
+
+    if(matches.length >= 0 && database[i].includes(search_for)){
+      matches.push(database[i]);
+    }
+  }
+
+  if (matches.length == 0){
+    document.write("There are no results for that query.")
+  }
+  document.write(matches);
+}
+
+
+</script>
+
+
+<p> The results of the query are: <script> query("Fiat"); </script> </p>
