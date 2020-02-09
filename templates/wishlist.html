@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:powderblue;">
-<h1 style="color:green; text-align:center; font-family:verdana; font-size: 50px;">Wishlists</h1>
+<head>
+  <link rel = "stylesheet" href = "../ShoppingCart/TopNav.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 
+  <div class="topnav">
+    <h1 style="color:green; text-align:center;
+    font-family:verdana; font-size: 50px;">GEEK TEXT</h1>
+    <p style="color:green; text-align:center; font-family:courier; ">
+      Thinkgeek + Barnes and Nobel's love child.</p>
+    <a href="homepage.html">Home</a>
+    <a href="#GEEK TEXT Browser">Books</a>
+    <a class="active" href="wishlist.html">Wishlist</a>
+    <a href="../ShoppingCart/Cart.html">Shopping Cart</a>
+    <a href="#Profile">Profile</a>
+  </div>
+
+<div style="padding-left:16px">
+  <h2>Wishlist</h2>
 <form method="get" action="/wishlist">
   Search product directory:
   <input type="text" name="search">
@@ -373,4 +390,5 @@ function clearTable(wishlistName){
 
 
 </script>
+</div>
 </body>
