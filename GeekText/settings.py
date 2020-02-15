@@ -124,5 +124,6 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4' #CSS Template Styling
 
 LOGIN_REDIRECT_URL = 'geektext-home'
+LOGIN_URL = 'login' #redirects url access from unauthenticated profile view to login url
 
 
