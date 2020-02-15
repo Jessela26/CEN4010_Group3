@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from bookbrowse.models import Book
+
 
 # Create your views here.
 def browse(request):
-    return render(request, "browse.html")
+    args = {}
+    books = Book.objects.all()
+    args['books'] = books
+    return render(request, "browse.html", args)
