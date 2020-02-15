@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.homepage),
     url(r'^wishlist/$', views.wishlist),
+    url(r'^browse/', include('bookbrowse.urls'))
 ]
