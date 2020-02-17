@@ -25,24 +25,62 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Browse <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Wishlist</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
+            {% if '/' in request.path %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+            {% endif %}
+            {% if 'books' in request.path %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">My Books</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Books</a>
+                </li>
+            {% endif %}
+            {% if 'browse' in request.path %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                </li>
+            {% endif %}
+            {% if 'wishlist' in request.path %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if 'cart' in request.path %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+            {% endif %}
+            {% if 'profile' in request.path %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
