@@ -23,7 +23,7 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
-    url(r'^$', views.homepage, name='home'),
+    url(r'^home/', views.homepage, name='home'),
     url(r'^wishlist/$', views.wishlist, name='wishlist'),
     url(r'^browse/', include('bookbrowse.urls'), name='browse')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

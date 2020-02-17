@@ -25,12 +25,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {% if '/' in request.path %}
-                <li class="nav-item">
+            {% if 'home' in request.path %}
+                <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
             {% else %}
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
             {% endif %}
@@ -85,7 +85,7 @@
     </div>
 </nav>
 
-<div id="content">
+<div class="container-fluid" id="content">
     {% block content %}
     {% endblock %}
 </div>
