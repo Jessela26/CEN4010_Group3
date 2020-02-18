@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "title": "To Kill a Mockingbird",
-      "author": "Harper Lee"
+      "author": "Harper Lee",
+      "description": "The mockingbird is killed."
     }
   },
   {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
       "title": "Harry Potter and the Prisoner of Azkaban",
-      "author": "J. K. Rowling"
+      "author": "J. K. Rowling",
+      "description": "A book about a wizard."
     }
   },
   {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
       "title": "Matched",
-      "author": "Ally Condie"
+      "author": "Ally Condie",
+      "description": "This book is an amazing journey. Too bad they still haven't made the movie!"
     }
   },
   {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
       "title": "Harry Potter and the Sorcerer's Stone",
-      "author": "J. K. Rowling"
+      "author": "J. K. Rowling",
+      "description": "Harry finds a stone that happened to belong to a sorcerer."
     }
   },
   {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
       "title": "Crossed",
-      "author": "Ally Condie"
+      "author": "Ally Condie",
+      "description": "The second installment in the matched series. Absolutely beautiful writing here."
     }
   }
 ]
