@@ -1,6 +1,6 @@
 [
   {
-    "model": "bookbrowse.book",
+    "model": "Browse.book",
     "pk": 1,
     "fields": {
       "title": "To Kill a Mockingbird",
@@ -9,7 +9,7 @@
     }
   },
   {
-    "model": "bookbrowse.book",
+    "model": "Browse.book",
     "pk": 2,
     "fields": {
       "title": "Harry Potter and the Prisoner of Azkaban",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "model": "bookbrowse.book",
+    "model": "Browse.book",
     "pk": 3,
     "fields": {
       "title": "Matched",
@@ -27,7 +27,7 @@
     }
   },
   {
-    "model": "bookbrowse.book",
+    "model": "Browse.book",
     "pk": 4,
     "fields": {
       "title": "Harry Potter and the Sorcerer's Stone",
@@ -36,7 +36,7 @@
     }
   },
   {
-    "model": "bookbrowse.book",
+    "model": "Browse.book",
     "pk": 5,
     "fields": {
       "title": "Crossed",

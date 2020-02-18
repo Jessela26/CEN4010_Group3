@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BookbrowseConfig(AppConfig):
+class BrowseConfig(AppConfig):
     name = 'Browse'
