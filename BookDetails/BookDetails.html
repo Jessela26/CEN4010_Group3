@@ -22,8 +22,24 @@
   <p>Date Published</p>
 </div>
 
-<div class="Ratings and comments section">
-  <h2>Ratings and Comments</h2>
+<div class="FeedBack">
+  <h2>Customer FeedBack</h2>
+  <form method="get">
+    <h3>Rate This Book</h3>
+    <select name="Stars">
+      <option value="Amazing">5</option>
+      <option value="Great">4</option>
+      <option value="Moderate">3</option>
+      <option value="Okay">2</option>
+      <option value="Bad">1</option>
+    </select>
+    <input type="submit" name="" value="Submit">
+  </form>
+<form method="post">
+  <input type="text" name="Name" placeholder="Name" required>
+  <textarea name="Comments" rows="8" cols="50" placeholder="Comments" required></textarea>
+  <input type="submit" name="" value="Submit">
+</form>
 </div>
 
   </body>
