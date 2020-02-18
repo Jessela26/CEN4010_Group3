@@ -14,8 +14,10 @@ html, body {
 
 /* Columns */
 .left-column {
-  width: 65%;
+  width: 55%;
   position: relative;
+  left: 10px;
+  top: 110px;
 }
  
 .right-column {
@@ -23,18 +25,7 @@ html, body {
   margin-top: 60px;
 }
 
-.left-column img {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transition: all 0.3s ease;
-}
  
-.left-column img.active {
-  opacity: 1;
-}
 .description {
   border-bottom: 1px solid #E1E8EE;
   margin-bottom: 20px;
@@ -51,4 +42,51 @@ html, body {
   font-weight: 300;
   color: #86939E;
   line-height: 24px;
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  width: 550px;
+}
+.product-price {
+  display: flex;
+  align-items: center;
+}
+ 
+.product-price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+
+.cart-btn {
+  display: inline-block;
+  background-color: #7DC855;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+
+.cart-btn:hover {
+  background-color: #64af3d;
+}
+
+.wish-btn {
+  display: inline-block;
+  background-color: blue;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+
+.wish-btn:hover {
+  background-color: blue;
 }
