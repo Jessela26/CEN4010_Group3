@@ -7,6 +7,8 @@
     {% for book in books %}
         <h2 style="color: green; padding-left: 50px;">{{ book.title }}</h2>
         <h4 style="padding-left: 50px;">{{ book.author }}</h4>
-        <br>
+        <a style="padding-left: 50px; color: green" href="{% url 'details' book.id %}">Details</a>
+        <br/>
+        <br/>
     {% endfor %}
 {% endblock %}
