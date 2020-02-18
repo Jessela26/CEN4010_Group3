@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from bookbrowse.models import Book
+from Browse.models import Book
 
 
 # Create your views here.

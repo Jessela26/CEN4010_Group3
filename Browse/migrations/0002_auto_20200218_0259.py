@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bookbrowse', '0001_initial'),
+        ('Browse', '0001_initial'),
     ]
 
     operations = [
