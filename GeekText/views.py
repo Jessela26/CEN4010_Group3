@@ -17,5 +17,9 @@ def wishlist(request):
     return render(request, "wishlist.html")
 
 
+def cart(request):
+    return render(request, "shoppingcart.html")
+
+
 def browse(request):
     return render(request, "browse.html")

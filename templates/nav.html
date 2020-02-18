@@ -67,11 +67,11 @@
             <ul class="navbar-nav ml-auto">
                 {% if 'cart' in request.path %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="{% url 'cart' %}">Cart</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="{% url 'cart' %}">Cart</a>
                     </li>
                 {% endif %}
                 {% if 'profile' in request.path %}
