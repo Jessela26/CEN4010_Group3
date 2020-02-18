@@ -19,11 +19,13 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^home/', views.homepage, name='home'),
     url(r'^wishlist/$', views.wishlist, name='wishlist'),
-    url(r'^browse/', include('bookbrowse.urls'), name='browse')
+    url(r'^browse/', include('bookbrowse.urls'), name='browse'),
+    url(r'^$', RedirectView.as_view(url='home', permanent=True), name='index')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
