@@ -16,73 +16,75 @@
     {% block page_title %}
     {% endblock %}
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/" style="color: green">GeekText</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<body style="padding-top: 50px">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="color: green">GeekText</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            {% if 'home' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-            {% endif %}
-            {% if 'books' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">My Books</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">My Books</a>
-                </li>
-            {% endif %}
-            {% if 'browse' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
-                </li>
-            {% endif %}
-            {% if 'wishlist' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
-                </li>
-            {% endif %}
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            {% if 'cart' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Cart</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
-                </li>
-            {% endif %}
-            {% if 'profile' in request.path %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-            {% endif %}
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if 'home' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                {% endif %}
+                {% if 'books' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">My Books</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Books</a>
+                    </li>
+                {% endif %}
+                {% if 'browse' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                    </li>
+                {% endif %}
+                {% if 'wishlist' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if 'cart' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Cart</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cart</a>
+                    </li>
+                {% endif %}
+                {% if 'profile' in request.path %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
 
