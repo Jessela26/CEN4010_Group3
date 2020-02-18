@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html>
+  <link rel="stylesheet" href="style.css">
   <head>
     <meta charset="utf-8">
     <title>Book Name Query</title>
   </head>
-  <body>
-    <h1>Name of Book Query</h1>
-    <h3>By:<a href="Author.html">Author Name Query</a></h3>
-    <p><i>Book description query</i></p>
+  <main class="container">
+    <body>
+      <div class="left-column">
+        <img src="def.jpg" alt="">
+      </div>  
 
-<!--Reference book cover picture-->
-<img src="" alt="">
+      <div class="right-column">
+        <div class="description">
+          <h1>Name of Book Query</h1>
+          <h3>By:<a href="Author.html">Author Name Query</a></h3>
+          <p><i>Book description query</i></p>
+        </div>  
 
-<div class="Author Details">
-  <h2>About The Author</h2>
-  <p>Author bio query</p>
-</div>
+        
 
-<div class="Publisher Details">
-  <h4>Publisher Query</h4>
-  <p>Date Published</p>
-</div>
+        <div class="Author Details">
+          <h2>About The Author</h2>
+          <p>Author bio query</p>
+        </div>
 
-<div class="FeedBack">
-  <h2>Customer FeedBack</h2>
-  <form method="get">
-    <h3>Rate This Book</h3>
-    <select name="Stars">
-      <option value="Amazing">5</option>
-      <option value="Great">4</option>
-      <option value="Moderate">3</option>
-      <option value="Okay">2</option>
-      <option value="Bad">1</option>
-    </select>
-    <input type="submit" name="" value="Submit">
-  </form>
-<form method="post">
-  <input type="text" name="Name" placeholder="Name" required>
-  <textarea name="Comments" rows="8" cols="50" placeholder="Comments" required></textarea>
-  <input type="submit" name="" value="Submit">
-</form>
-</div>
+        <div class="Publisher Details">
+          <h4>Publisher Query</h4>
+          <p>Date Published</p>
+        </div>
+      
 
-  </body>
-</html>
+        <div class="FeedBack">
+          <h2>Customer FeedBack</h2>
+          <form method="get">
+            <h3>Rate This Book</h3>
+            <select name="Stars">
+              <option value="Amazing">5</option>
+              <option value="Great">4</option>
+              <option value="Moderate">3</option>
+              <option value="Okay">2</option>
+              <option value="Bad">1</option>
+            </select>
+            <input type="submit" name="" value="Submit">
+          </form>
+          <form method="post">
+            <input type="text" name="Name" placeholder="Name" required>
+            <textarea name="Comments" rows="8" cols="50" placeholder="Comments" required></textarea>
+            <input type="submit" name="" value="Submit">
+          </form>
+        </div>
+      </div>
+    </body>
+  </main>
