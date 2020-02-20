@@ -56,7 +56,36 @@
           <p></p>
           <div class="product-price">
             <a href="#" class="cart-btn">Add to cart</a>&nbsp
-            <a href="#" class="wish-btn">Add to wishlist</a>
+            <div class="dropdown">
+              <button onclick="sendToWishlist()" class="dropbtn">Add to Wishlist</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="#">Wishlist 1</a>
+                  <a href="#">Wishlist 2</a>
+                  <a href="#">Wishlist 3</a>
+                </div>
+            </div>
+
+            <script>
+            function wishlistQuery(){
+              //Generates query for the sendToWishlist function.
+
+              var product = document.getElementById("productName").innerHTML;
+              var dropdown = document.getElementById("wishlistChoiceDropdown");
+              var choice = dropdown.options[dropdown.selectedIndex].text;
+
+              if (choice === "None"){ //If the user selected "None" as their option.
+                alert("Please select a wishlist in order to submit.");
+              } else{
+                var action = "INSERT INTO {user's personal table} " + choice + " VALUES " +  product;
+                return action;
+              }
+            }
+
+            function sendToWishlist(){
+              console.log("Send to Wishlist");
+              document.getElementById("myDropdown").classList.toggle("show");
+            }
+            </script>
           </div>
         </div>
       </div>

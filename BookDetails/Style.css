@@ -34,13 +34,13 @@ html, body {
 .description h1 {
   font-weight: 300;
   font-size: 52px;
-  color: #43484D;
+  color: darkgreen;
   letter-spacing: -2px;
 }
  p {
   font-size: 16px;
   font-weight: 300;
-  color: #86939E;
+  color: darkgreen;
   line-height: 24px;
 }
 img {
@@ -77,9 +77,10 @@ img {
   background-color: #64af3d;
 }
 
-.wish-btn {
+
+.dropbtn {
   display: inline-block;
-  background-color: blue;
+  background-color: #3498DB;
   border-radius: 6px;
   font-size: 16px;
   color: #FFFFFF;
@@ -88,6 +89,28 @@ img {
   transition: all .5s;
 }
 
-.wish-btn:hover {
-  background-color: blue;
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
 }
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
