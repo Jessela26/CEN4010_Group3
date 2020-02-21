@@ -1,3 +1,8 @@
+{% extends "nav.html" %}
+{% block page_title %}
+    <title>GeekText - Wishlists</title>
+{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 
@@ -69,18 +74,18 @@ function addRow(column1, column2, column3, column4){
 </script>
 
 <style>
-table {
-  border: 1px solid black;
-  text-align: center;
-  background-color:#7DC855;
-  border-radius: 6px;
-}
+  table {
+    border: 1px solid black;
+    text-align: center;
+    background-color:#7DC855;
+    border-radius: 6px;
+  }
 
-td{
-  border: 1px solid black;
-  text-align: center;
-  background-color:#f5f5f5;
-}
+  td{
+    border: 1px solid black;
+    text-align: center;
+    background-color:#f5f5f5;
+  }
 
 
 </style>
@@ -386,3 +391,5 @@ function clearTable(wishlistName){
 
 </script>
 </body>
+
+{% endblock %}
