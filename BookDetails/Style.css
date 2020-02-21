@@ -4,7 +4,7 @@ html, body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
-
+ 
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -16,16 +16,16 @@ html, body {
 .left-column {
   width: 55%;
   position: relative;
-  left: 30px;
-  top: 200px;
+  left: 10px;
+  top: 110px;
 }
-
+ 
 .right-column {
   width: 35%;
   margin-top: 60px;
 }
 
-
+ 
 .description {
   border-bottom: 1px solid #E1E8EE;
   margin-bottom: 20px;
@@ -34,27 +34,26 @@ html, body {
 .description h1 {
   font-weight: 300;
   font-size: 52px;
-  color: darkgreen;
+  color: #43484D;
   letter-spacing: -2px;
 }
  p {
   font-size: 16px;
   font-weight: 300;
-  color: darkgreen;
+  color: #86939E;
   line-height: 24px;
 }
 img {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
-  width: 400px;
+  width: 550px;
 }
-
 .product-price {
   display: flex;
   align-items: center;
 }
-
+ 
 .product-price span {
   font-size: 26px;
   font-weight: 300;
@@ -77,10 +76,9 @@ img {
   background-color: #64af3d;
 }
 
-
-.dropbtn {
+.wish-btn {
   display: inline-block;
-  background-color: #3498DB;
+  background-color: blue;
   border-radius: 6px;
   font-size: 16px;
   color: #FFFFFF;
@@ -89,28 +87,6 @@ img {
   transition: all .5s;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+.wish-btn:hover {
+  background-color: blue;
 }
-
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
