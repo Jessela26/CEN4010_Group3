@@ -24,7 +24,7 @@
 
 
             <div class="Author Details">
-                <h2>About The Author</h2>
+                <h2>About {{ book.author }}</h2>
                 <p>Author bio query</p>
             </div>
 
@@ -35,21 +35,26 @@
 
 
             <div class="FeedBack">
-                <h2>Customer FeedBack</h2>
+                <h2>Customer Feedback</h2>
                 <form method="get">
-                    <h3>Rate This Book</h3>
-                    <select name="Stars">
-                        <option value="Amazing">5</option>
-                        <option value="Great">4</option>
-                        <option value="Moderate">3</option>
-                        <option value="Okay">2</option>
-                        <option value="Bad">1</option>
-                    </select>
+                    <label>Rating:<br/>
+                        <select name="Stars">
+                            <option value="5">Amazing</option>
+                            <option value="4">Great</option>
+                            <option value="3">Moderate</option>
+                            <option value="2">Okay</option>
+                            <option value="1">Bad</option>
+                        </select>
+                    </label>
                     <input type="submit" name="" value="Submit">
                 </form>
                 <form method="post">
-                    <input type="text" name="Name" placeholder="Name" required>
-                    <textarea name="Comments" rows="8" cols="50" placeholder="Comments" required></textarea>
+                    <label>Name:<br/>
+                        <input type="text" name="Name" required>
+                    </label>
+                    <label>Comment:
+                        <textarea name="Comments" rows="8" cols="50" required></textarea>
+                    </label>
                     <input type="submit" name="" value="Submit">
                 </form>
                 <p></p>
