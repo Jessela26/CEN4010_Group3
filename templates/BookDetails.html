@@ -18,19 +18,27 @@
         <div class="right-column">
             <div class="description">
                 <h1>{{ book.title }}</h1>
-                <h3>By:<a href="Author.html">{{ book.author }}</a></h3>
+                <h3>By: <a href="Author.html">{{ book.author }}</a></h3>
                 <p><i>{{ book.description }}</i></p>
             </div>
 
 
             <div class="Author Details">
                 <h2>About {{ book.author }}</h2>
-                <p>Author bio query</p>
+                {% if book.author_bio %}
+                    <p>{{ book.author_bio }}</p>
+                {% else %}
+                    <p>{{ book.author }}'s bio coming shortly...</p>
+                {% endif %}
             </div>
 
             <div class="Publisher Details">
-                <h4>Publisher Query</h4>
-                <p>Date Published</p>
+                {% if book.publisher %}
+                    <h4>{{ book.publisher }}</h4>
+                    <p>{{ book.year_published }}</p>
+                {% else %}
+                    <p>No publisher information for '{{ book.title }}' yet.</p>
+                {% endif %}
             </div>
 
 
