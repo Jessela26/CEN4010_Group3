@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^browse/', include('Browse.urls'), name='browse'),
     url(r'^cart/$', views.cart, name='cart'),
     url(r'^$', RedirectView.as_view(url='home', permanent=True), name='index'),
-    path('browse/details/<int:book_id>/', views.details, name='details')
+    path('browse/details/<int:book_id>/', include('BookDetails.urls'), name='details')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -21,9 +21,5 @@ def cart(request):
     return render(request, "shoppingcart.html")
 
 
-def details(request, book_id):
-    return render(request, "Bookdetails.html", book_id)
-
-
 def browse(request):
     return render(request, "browse.html")
