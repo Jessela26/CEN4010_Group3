@@ -20,7 +20,7 @@
 
         {% if shopping_list %}
           <ol>
-            {% for item in shopping_list %}
+            {% for book in shopping_list %}
 
 
 
@@ -35,28 +35,46 @@
           <p>Your cart is currently empty. Browse <a style="color: green" href="
             {% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p><hr>
 
+            <!--- it is here now so its visible even when cart is empty ---!>
 
-            <div class="book-item" style="padding:20px 30px; height:120px; display:flex;">
+            <div class="column-labels" style="color:gray; text-align:center; display:flex; padding:10px">
+                <label class="book-image-description" style="width: 40%"></label>
+                <label class="product-price" style="width: 15%">Price</label>
+                <label class="product-quantity" style="width: 15%">Quantity</label>
+                <label class="save-remove" style="width: 15%"></label>
+                <label class="product-line-price" style="width: 15%">Total</label>
+            </div><hr>
+
+
+
+            <div class="book-item" style="padding:20px 30px; height:120px; display:flex; text-align:center">
 
 
 
               <!--This is for the book image--!>
-              <div class="book-image" style="padding:10px; width: 20%">
+              <div class="book-image" style="align:center; width:20%">
                 <img src="{% static 'admin/img/def.jpg' %}" alt=""/>
               </div>
 
 
 
               <!--This is for the book title and author--!>
-              <div class="book_details" style="padding-top:10px; margin-right:60px; width: 115px; width: 20%">
-                <h5><b>BOOK TITLE{{book.title}}</b></h5>
+              <div class="book_details" style="text-align:left;padding-top:10px; width:20%">
+                <h5><a style="color:green"href="{% url 'browse' %}"><b>BOOK TITLE{{book.title}}</b></a></h5>
                 <p>BOOK AUTHOR{{book.author}}</p>
               </div>
 
 
 
+              <!--This is for the book price for one item--!>
+              <div class="price" style="padding-top:20px; width:15%">
+                $11.99
+              </div>
+
+
+
               <!--This is for the book quantity and plus/minus buttons--!>
-              <div class="quantity" style="padding-top:20px; margin-right:60px; width: 20%">
+              <div class="quantity" style="padding-top:20px; width:15%">
                 <button class="minus-button" type="button" name="button" style="background:green">
                   <img src="../static/admin/img/tooltag-arrowright.svg" alt=""
                   style="transform: scaleX(-1)"/>
@@ -69,21 +87,19 @@
 
 
 
-              <!--This is for the book price * quantity--!>
-              <div class="price" style="padding-top:20px; width: 20%">
-                $11.99
-              </div>
-
-
 
               <!--This is for the delete and save for later--!>
-              <div class="buttons" style="position:relative; padding-top:20px; margin-left:60px; width: 20%">
+              <div class="buttons" style="padding-top:20px; width:15%">
                 <span class="save-button" type="button" name="button" style="padding:5px; display:inline-block">
                   Save for later
                 </span>
                 <span class="delete-button "type="button" name="button" style="padding:5px; display:inline-block">
                   <img src="../static/admin/img/inline-delete.svg" alt=""/>
                 </span>
+              </div>
+
+              <div class="total-price" style="padding-top:20px; width:15%">
+                $11.99*quantity
               </div>
 
             </div><hr>
