@@ -8,5 +8,5 @@ class Book(models.Model):
     author_bio = models.CharField(max_length=5000, null=True)
     publisher = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1000, null=True)
-    year_published = models.DateField(max_length=50, null=True)
+    date_published = models.CharField(max_length=50, null=True)
     rating = models.IntegerField(null=True)
