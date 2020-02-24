@@ -6,5 +6,5 @@ from Browse.models import Book
 def browse(request):
     args = {}
     books = Book.objects.all()
-    args['books'] = books
+    args['Books'] = books
     return render(request, "browse.html", args)

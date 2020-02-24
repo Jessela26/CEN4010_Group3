@@ -16,7 +16,7 @@ My primary objective has been improving user productivity, increasing performanc
 'O,Reilly','10/05/2012');
 
 Insert Into GeekText values(2, 'Java Script 20 Lessons to Successful Web Development', 
-'Robin Nixon', 'Robert Nixon is a prolific author on programming and Web Development with his books having been translated into numerous
+'Robin Nixon', 'Robert Nixon is a prolific author on programming and Web Development with his Books having been translated into numerous
 foreign languages - frequently topping the charts.',
 'Mc Graw Hill','01/27/2015');
 

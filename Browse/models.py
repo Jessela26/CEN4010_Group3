@@ -10,3 +10,4 @@ class Book(models.Model):
     description = models.CharField(max_length=1000, null=True)
     year_published = models.DateField(max_length=50, null=True)
     rating = models.IntegerField(null=True)
+    img_ref = models.CharField(max_length=500, null=True)
