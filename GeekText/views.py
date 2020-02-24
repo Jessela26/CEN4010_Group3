@@ -21,6 +21,10 @@ def cart(request):
     return render(request, "shoppingcart.html")
 
 
+def checkout(request):
+    return render(request, "checkout.html")
+
+
 def details(request, book_id):
     return render(request, "Bookdetails.html", book_id)
 
