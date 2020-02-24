@@ -20,10 +20,9 @@
         <div class="right-column">
             <div class="description">
                 <h1>{{ book.title }}</h1>
-                <h3>By: <a href="Author.html">{{ book.author }}</a></h3>
+                <h3>By: <a href="{% url 'author' book.author %}">{{ book.author }}</a></h3>
                 <p><i>{{ book.description }}</i></p>
             </div>
-
 
             <div class="Author Details">
                 <h2>About {{ book.author }}</h2>

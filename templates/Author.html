@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <link rel="stylesheet" href="../static/BookDetails/css/style.css">
-  <head>
+{% extends 'nav.html' %}
+{% block page_title %}
     <meta charset="utf-8">
-    <title>Query author name</title>
-  </head>
-  <body>
-    <h1>Query author name</h1>
-    <p>Query author bio</p>
-    <ul>
-      <p>Query list books with this author name</p>
-    </ul>
-  </body>
-</html>
+    <title> {{ book_author }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="../static/BookDetails/css/style.css">
+    <title>{{ book.author }}</title>
+{% endblock %}
+{% block content %}
+    <h1>{{ book_author }}</h1>
+    <br/>
+    {% for book in books %}
+        <h1>{{ book.title }}</h1>
+        <p>{{ book.description }}</p>
+    {% endfor %}
+{% endblock %}
