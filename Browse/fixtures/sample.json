@@ -6,7 +6,7 @@
       "title": "Python for Data Analysis",
       "author": "Wes Mckinney",
       "author_bio": "I have been developing data analysis software, mostly for use in the Python programming language. My primary objective has been improving user productivity, increasing performance and efficiency, and enhancing data interoperability.",
-      "description": "The mockingbird is killed.",
+      "description": "Data Wrangling with Pandas, NumPy, and IPython",
       "publisher": "O'Reilly",
       "date_published": "10/05/2012"
     }
@@ -18,7 +18,7 @@
       "title": "Java Script 20 Lessons to Successful Web Development",
       "author": "Robin Nixon",
       "author_bio": "Robert Nixon is a prolific author on programming and Web Development with his books having been translated into numerous foreign languages - frequently topping the charts.",
-      "description": "The mockingbird is killed.",
+      "description": "This complete and integrated learning tool provides easy-to-follow lessons that feature clear explanations, sample code and exercises, and video tutorials.",
       "publisher": "McGraw Hill",
       "date_published": "01/27/2015"
     }
@@ -30,7 +30,7 @@
       "title": "Java For Dummies, 7th Edition",
       "author": "Barry Burd",
       "author_bio": "Barry Burd is a professor of Computer Science and Mathematics at Drew University. He’s the author of several books in the For Dummies series, including Java For Dummies and Android Application Development All-in-One For Dummies. He’s written articles for InfoQ.com, AndroidAuthority.com and TheServerSide.com. When he was a teaching assistant at the University of Illinois with full responsibility for each of his courses, he appeared for five out of his eight semesters on the university-wide List of Teachers Rated Excellent by their Students.",
-      "description": "The mockingbird is killed.",
+      "description": "If you want to learn to speak the world’s most popular programming language like a native, Java For Dummies is your ideal companion. With a focus on reusing existing code, it quickly and easily shows you how to create basic Java objects, work with Java classes and methods, understand the value of variables, learn to control program flow with loops or decision-making statements, and so much more!",
       "publisher": "For Dummies",
       "date_published": "03/05/2017"
     }
@@ -42,7 +42,7 @@
       "title": "Python All-in-One For Dummies",
       "author": "John Shovic",
       "author_bio": "Author, Entrepreneur, Educator. Setting up a new Computer Science Program with University of Idaho/North Idaho College in Coeur d'Alene. CTO of SwitchDoc Labs.",
-      "description": "The mockingbird is killed.",
+      "description": "Thanks to its flexibility, Python has grown to become one of the most popular programming languages in the world. Developers use Python 3 in app development, web development, data science, machine learning, and even in coding education classes.",
       "publisher": "For Dummies",
       "date_published": "03/07/2019"
     }
@@ -54,7 +54,7 @@
       "title": "Algorithms For Dummies",
       "author": "John Paul Mueller",
       "author_bio": "John Paul Mueller. John Mueller is a freelance author and technical editor. He has writing in his blood, having produced 51 books and over 200 articles to date. The topics of his writing range from networking to artificial intelligence and from database management to heads-down programming.",
-      "description": "The mockingbird is killed.",
+      "description": "This book demystifies the subject of algorithms so you can understand how important they are business and scientific decision making. Algorithms for Dummies is a clear and concise primer for everyday people who are interested in algorithms and how they impact our digital lives.",
       "publisher": "For Dummies",
       "date_published": "04/24/2017"
     }
@@ -66,7 +66,7 @@
       "title": "Coding All-in-One For Dummies",
       "author": "Nikhil Abraham",
       "author_bio": "Nikhil Abraham was Director of Business Development & Growth at Codecademy. In that role, he taught and trained thousands of beginning coders across a variety of professions. He helped refine Codecademy's online courses, which have introduced basic coding skills to millions of learners.",
-      "description": "The mockingbird is killed.",
+      "description": "The demand for people with coding know-how exceeds the number of people who understand the languages that power technology. Coding All-in-One For Dummies gives you an ideal place to start when you're ready to add this valuable asset to your professional repertoire. Whether you need to learn how coding works to build a web page or an application or see how coding drives the data revolution, this resource introduces the languages and processes you'll need to know.",
       "publisher": "For Dummies",
       "date_published": "03/01/2017"
     }
@@ -78,7 +78,7 @@
       "title": "Web Coding & Development All-in-One For Dummies",
       "author": "Paul McFedries",
       "author_bio": "Paul McFedries is a Canadian author of more than 40 computer books that have sold 3 million copies worldwide. He has been programming since he was a teenager in the mid-1970s, and is the president of Logophilia Limited, a technical writing company.",
-      "description": "The mockingbird is killed.",
+      "description": "With more high-paying web development jobs opening every day, people with coding and web/app building skills are having no problems finding employment. If you’re a would-be developer looking to gain the know-how to build the interfaces, databases, and other features that run modern websites, web apps, and mobile apps, look no further. Web Coding & Development All-in-One For Dummies is your go-to interpreter for speaking the languages that handle those tasks.",
       "publisher": "For Dummies",
       "date_published": "03/15/2018"
     }
@@ -90,7 +90,7 @@
       "title": "Beginning Programming",
       "author": "Wallace Wang",
       "author_bio": "Wallace Wang is a former Windows enthusiast who took one look at Vista and realized that the future of computing belonged to the Mac. He s written more than 40 computer books, including Microsoft Office for Dummies, Beginning Programming for Dummies, Steal This Computer Book, My New Mac, and My New iPad. In addition to programming the Mac and iPhone/iPad, he also performs stand-up comedy, having appeared on A&E s 'Evening at the Improv,' and having performed in Las Vegas at the Riviera Comedy Club at the Riviera Hotel & Casino. When he’s not writing computer books or performing stand-up comedy, he also enjoys blogging about screenwriting at his site, The 15 Minute Movie Method, where he shares screenwriting tips with other aspiring screenwriters who all share the goal of breaking into Hollywood.",
-      "description": "The mockingbird is killed.",
+      "description": "Do you think the programmers who work at your office are magical wizards who hold special powers that manipulate your computer? Believe it or not, anyone can learn how to write programs, and it doesn’t take a higher math and science education to start.",
       "publisher": "For Dummies",
       "date_published": "06/03/2008"
     }
@@ -102,7 +102,7 @@
       "title": "R For Dummies",
       "author": "Andrie de Vries",
       "author_bio": "Andrie de Vries is a leading R expert and Business Services Director for Revolution Analytics. With over 20 years of experience, he provides consulting and training services in the use of R. Joris Meys is a statistician, R programmer and R lecturer with the faculty of Bio-Engineering at the University of Ghent.",
-      "description": "The mockingbird is killed.",
+      "description": "Coming to grips with R can be tough, even for seasoned statisticians and data analysts. Enter R For Dummies, the quick, easy way to master all the R you'll ever need. Requiring no prior programming experience and packed with practical examples, easy, step-by-step exercises, and sample code, this extremely accessible guide is the ideal introduction to R for complete beginners. It also covers many concepts that intermediate-level programmers will find extremely useful.",
       "publisher": "For Dummies",
       "date_published": "06/07/2015"
     }
@@ -114,7 +114,7 @@
       "title": "C++ All-in-One For Dummies",
       "author": "John Paul Mueller",
       "author_bio": "John Paul Mueller. John Mueller is a freelance author and technical editor. He has writing in his blood, having produced 51 books and over 200 articles to date. The topics of his writing range from networking to artificial intelligence and from database management to heads-down programming.",
-      "description": "The mockingbird is killed.",
+      "description": "C++ is the workhorse of programming languages and remains one of the most widely used programming languages today. It's cross-platform, multi-functional, and updates are typically open-source. The language itself is object-oriented, offering you the utmost control over data usage, interface, and resource allocation. If your job involves data, C++ proficiency makes you indispensable.",
       "publisher": "For Dummies",
       "date_published": "08/18/2014"
     }
@@ -126,7 +126,7 @@
       "title": "Java All-in-One For Dummies",
       "author": "Doug Lowe",
       "author_bio": "Doug Lowe is a master at simplifying complex tech topics. His four previous editions of Java All-in-One For Dummies have helped thousands of programmers master Java skills. Doug also serves as a one-man IT department for an engineering consulting firm.",
-      "description": "The mockingbird is killed.",
+      "description": "Java All-in-One For Dummies, 4th Edition has what you need to get up and running quickly with Java. Covering the enhanced mobile development and syntax features as well as programming improvements, this guide makes it easy to find what you want and put it to use.",
       "publisher": "For Dummies",
       "date_published": "05/01/2017"
     }
@@ -138,7 +138,7 @@
       "title": "Java Programming for Android Developers For Dummies",
       "author": "Barry Burd",
       "author_bio": "Barry Burd, PhD, is a professor in the Department of Mathematics and Computer Science at Drew University in Madison, New Jersey. He has lectured at conferences in the United States, Europe, Australia, and Asia. He hosts podcasts and videos about software and other technology topics. He is the author of many articles and books, including Java For Dummies.",
-      "description": "The mockingbird is killed.",
+      "description": "The demand for Android apps is not slowing down but many mobile developers who want to create Android apps lack the necessary Java background. This beginner guide gets you up and running with using Java to create Android apps with no prior knowledge or experienced necessary!",
       "publisher": "For Dummies",
       "date_published": "11/07/2016"
     }
@@ -150,7 +150,7 @@
       "title": "Android App Development FD 3e (For Dummies)",
       "author": "Michael Burton",
       "author_bio": "Michael Burton is the Director of Mobile Engineering at Groupon and creator of the popular RoboGuice programming framework for Android. He's the author of the OpenTable, Digg, TripIt, and award winning Groupon Android apps, and has addressed conferences around the world.",
-      "description": "The mockingbird is killed.",
+      "description": "If you have ambitions to build an Android app, this hands-on guide gives you everything you need to dig into the development process and turn your great idea into a reality! In this new edition of Android App Development For Dummies, you'll find easy-to-follow access to the latest programming techniques that take advantage of the new features of the Android operating system. Plus, two programs are provided: a simple program to get you started and an intermediate program that uses more advanced aspects of the Android platform.",
       "publisher": "For Dummies",
       "date_published": "05/09/2015"
     }
@@ -162,7 +162,7 @@
       "title": "Networking All-in-One For Dummies",
       "author": "Doug Lowe",
       "author_bio": "Doug Lowe is a master at simplifying complex tech topics. His four previous editions of Java All-in-One For Dummies have helped thousands of programmers master Java skills. Doug also serves as a one-man IT department for an engineering consulting firm.",
-      "description": "The mockingbird is killed.",
+      "description": "If you're responsible for a network, large or small, this book is your one-stop resource for all the essential details you need to know. Fully updated to cover Windows 8 and Windows Server 2012, it features the latest on broadband technologies, storage, backup procedures, and all the current networking trends. Nine handy minibooks cover the basics, building a network, administration and security, TCP/IP and the Internet, wireless networking, mobile networking, Windows Server 2012, using other Windows servers, and managing Linux systems.",
       "publisher": "For Dummies",
       "date_published": "04/10/2018"
     }
@@ -174,7 +174,7 @@
       "title": "Cybersecurity For Dummies",
       "author": "Joseph Steinberg",
       "author_bio": "Joseph Steinberg is a cybersecurity and emerging technologies advisor with two decades of industry experience. One of only 28 people worldwide to hold the entire suite of advanced information security certifications (CISSP, ISSAP, ISSMP, and CSSLP), he writes an independent column covering cybersecurity and privacy, after previously covering those topics for Forbes and Inc. Magazine. He also authors thought leadership articles for many technology companies, including IBM and Microsoft, and has invented various cybersecurity-related technologies, which are cited in more than 400 U.S. patent filings.",
-      "description": "The mockingbird is killed.",
+      "description": "Cybersecurity is the protection against the unauthorized or criminal use of electronic data and the practice of ensuring the integrity, confidentiality, and availability of information. Being cyber-secure means that a person or organization has both protected itself against attacks by cyber criminals and other online scoundrels, and ensured that it has the ability to recover if it is attacked.",
       "publisher": "For Dummies",
       "date_published": "10/15/2019"
     }
@@ -186,7 +186,7 @@
       "title": "Hacking For Dummies",
       "author": "Kevin Beaver",
       "author_bio": "Kevin Beaver is an independent information security consultant with more than three decades of experience. Kevin specializes in performing vulnerability and penetration testing and security consulting work for Fortune 1000 corporations, product vendors, independent software developers, universities, and government organizations. He has appeared on CNN and been quoted in The Wall Street Journal.",
-      "description": "The mockingbird is killed.",
+      "description": "The best way to stay safe online is to stop hackers before they attack - first, by understanding their thinking and second, by ethically hacking your own site to measure the effectiveness of your security. This practical, top-selling guide will help you do both. Fully updated for Windows 8 and the latest version of Linux, Hacking For Dummies, 4th Edition explores the malicious hacker's mindset and helps you develop an ethical hacking plan (also known as penetration testing) using the newest tools and techniques.",
       "publisher": "For Dummie",
       "date_published": "07/11/2018"
     }
@@ -198,7 +198,7 @@
       "title": "PHP, MySQL, & JavaScript All-in-One For Dummies",
       "author": "Blum",
       "author_bio": "Richard Blum has more than 30 years of experience as a systems administrator and programmer. He teaches online courses in PHP, JavaScript, HTML5, and CSS3 programming, and authored the latest edition of Linux For Dummies.",
-      "description": "The mockingbird is killed.",
+      "description": "It takes a powerful suite of technologies to drive the most-visited websites in the world. PHP, mySQL, JavaScript, and other web-building languages serve as the foundation for application development and programming projects at all levels of the web.",
       "publisher": "For Dummies",
       "date_published": "04/10/2018"
     }
@@ -210,7 +210,8 @@
       "title": "PHP & MySQL For Dummies",
       "author": "Janet Valade",
       "author_bio": "Janet Valade is a technical writer, Web designer/programmer, and systems analyst. She has designed and developed data archives, supervised computer resource operations, and conducted seminars and workshops. She has written all previous editions of PHP & MySQL For Dummies.",
-      "description": "The mockingbird is killed.",
+      "description": "Here's what Web designers need to know to create dynamic, database-driven Web sites
+To be on the cutting edge, Web sites need to serve up HTML, CSS, and products specific to the needs of different customers using different browsers. An effective e-commerce site gathers information about users and provides information they need to get the desired result.",
       "publisher": "For Dummies",
       "date_published": "12/09/2009"
     }
@@ -222,7 +223,7 @@
       "title": "Python for Dummies",
       "author": "Stef Maruch",
       "author_bio": "Stef Maruch got her hands on an original 128K Mac in 1984 and has been writing about computers ever since. She has over fifteen years’ experience in instructional design, writing, and editing end-user computer manuals, including tutorials and user’s guides for Apple Newton, HyperCard and HyperTalk, and DVD Studio Pro.",
-      "description": "The mockingbird is killed.",
+      "description": "Python is one of the most powerful, easy-to-read programming languages around, but it does have its limitations. This general purpose, high-level language that can be extended and embedded is a smart option for many programming problems, but a poor solution to others.",
       "publisher": "For Dummies",
       "date_published": "09/04/2006"
     }
@@ -234,7 +235,7 @@
       "title": "Python for Data Science For Dummies",
       "author": "John Paul Mueller",
       "author_bio": "John Paul Mueller is a tech editor and the author of over 100 books on topics from networking and home security to database management and heads-down programming. Follow John's blog at blog.johnmuellerbooks.com/. Luca Massaron is a data scientist who specializes in organizing and interpreting big data and transforming it into smart data. He is a Google Developer Expert (GDE) in machine learning.",
-      "description": "The mockingbird is killed.",
+      "description": "Python is the preferred programming language for data scientists and combines the best features of Matlab, Mathematica, and R into libraries specific to data analysis and visualization. Python for Data Science For Dummies shows you how to take advantage of Python programming to acquire, organize, process, and analyze large amounts of information and use basic statistics concepts to identify trends and patterns. You’ll get familiar with the Python development environment, manipulate data, design compelling visualizations, and solve scientific computing challenges as you work your way through this user-friendly guide.",
       "publisher": "For Dummies",
       "date_published": "02/27/2019"
     }
@@ -246,7 +247,7 @@
       "title": "SQL All-In-One For Dummies",
       "author": "Allen G. Taylor",
       "author_bio": "Allen G. Taylor is a 40-year veteran of the computer industry and the author of more than 40 books, including SQL For Dummies and Database Development For Dummies. For the latest news on Allen's activities, check out his online courses (at pioneer-academy1.teachable.com) and his blog (at www.allengtaylor.com). You can contact Allen at allen.taylor@ieee.org.",
-      "description": "The mockingbird is killed.",
+      "description": "SQL, or structured query language, is the international standard language for creating and maintaining relational databases. It is the basis of all major databases in use today and is essential for the storage and retrieval of database information. This fun and friendly guide takes SQL and all its related topics and breaks it down into easily digestible pieces for you to understand. You’ll get the goods on relational database design, development, and maintenance, enabling you to start working with SQL right away!",
       "publisher": "For Dummies",
       "date_published": "04/23/2019"
     }
