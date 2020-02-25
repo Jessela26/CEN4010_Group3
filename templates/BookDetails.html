@@ -16,10 +16,10 @@
         </div>
 
         <div class="right-column">
-            <div class="description">
+            <div class="description" style="color: black !important;">
                 <h1>{{ book.title }}</h1>
                 <h3>By: <a href="{% url 'author' book.author %}">{{ book.author }}</a></h3>
-                <p><i>{{ book.description }}</i></p>
+                <p>{{ book.description }}</p>
             </div>
 
             <div class="Author Details">
@@ -33,8 +33,8 @@
 
             <div class="Publisher Details">
                 {% if book.publisher %}
-                    <h4>{{ book.publisher }}</h4>
-                    <p>{{ book.year_published }}</p>
+                    <h6>Publisher: {{ book.publisher }}</h6>
+                    <h6>Published on: {{ book.date_published }}</h6>
                 {% else %}
                     <p>No publisher information for '{{ book.title }}' yet.</p>
                 {% endif %}
@@ -42,33 +42,12 @@
 
 
             <div class="FeedBack">
-                <h2>Customer Feedback</h2>
-                <form method="get">
-                    <label>Rating:<br/>
-                        <select name="Stars">
-                            <option value="5">Amazing</option>
-                            <option value="4">Great</option>
-                            <option value="3">Moderate</option>
-                            <option value="2">Okay</option>
-                            <option value="1">Bad</option>
-                        </select>
-                    </label>
-                    <input type="submit" name="" value="Submit">
-                </form>
-                <form method="post">
-                    <label>Name:<br/>
-                        <input type="text" name="Name" required>
-                    </label>
-                    <label>Comment:
-                        <textarea name="Comments" rows="8" cols="50" required></textarea>
-                    </label>
-                    <input type="submit" name="" value="Submit">
-                </form>
-                <p></p>
+                <hr style="margin-left: 10px; margin-right: 10px">
+                <h3>Price: ${{ book.price }}</h3>
                 <div class="product-price">
-                    <a href="#" class="cart-btn">Add to cart</a>&nbsp
+                    <button class="btn btn-success">Add to cart</button>&nbsp;
                     <div class="dropdown">
-                        <button onclick="sendToWishlist()" class="dropbtn">Add to Wishlist</button>
+                        <button onclick="sendToWishlist()" class="btn btn-info">Add to Wishlist</button>
                         <div id="myDropdown" class="dropdown-content">
                             <a href="#">Wishlist 1</a>
                             <a href="#">Wishlist 2</a>
@@ -80,15 +59,14 @@
                         function wishlistQuery() {
                             //Generates query for the sendToWishlist function.
 
-                            var product = document.getElementById("productName").innerHTML;
-                            var dropdown = document.getElementById("wishlistChoiceDropdown");
-                            var choice = dropdown.options[dropdown.selectedIndex].text;
+                            const product = document.getElementById("productName").innerHTML;
+                            const dropdown = document.getElementById("wishlistChoiceDropdown");
+                            const choice = dropdown.options[dropdown.selectedIndex].text;
 
                             if (choice === "None") { //If the user selected "None" as their option.
                                 alert("Please select a wishlist in order to submit.");
                             } else {
-                                var action = "INSERT INTO {user's personal table} " + choice + " VALUES " + product;
-                                return action;
+                                return "INSERT INTO {\"user\'s personal table\"} " + choice + " VALUES " + product;
                             }
                         }
 
