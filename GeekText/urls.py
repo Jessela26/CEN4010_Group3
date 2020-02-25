@@ -19,7 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import RedirectView
-
+from django.contrib.auth import views as auth_views
+from users import views as user_views
 from . import views
 
 urlpatterns = [
@@ -30,5 +31,9 @@ urlpatterns = [
                   url(r'^cart/$', views.cart, name='cart'),
                   url(r'^$', RedirectView.as_view(url='home', permanent=True), name='index'),
                   path('author/<str:book_author>/', include('Author.urls'), name='author'),
-                  path('browse/details/<int:book_id>/', include('BookDetails.urls'), name='details')
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                  path('browse/details/<int:book_id>/', include('BookDetails.urls'), name='details'),
+                  url(r'register/$', user_views.register, name = 'register'),
+                  url(r'login/$', auth_views.LoginView.as_view(template_name='users/login.html', redirect_authenticated_user=True), name = 'login'), #class based view
+                  url(r'logout/$', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout'), #class based view
+                  url(r'profile/$', user_views.profile, name = 'profile'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

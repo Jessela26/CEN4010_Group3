@@ -1,0 +1,6 @@
+{% extends "nav.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2 class="account-heading">{{ user.first_name}}</h2>
+    <p class="secondary-text">{{user.email}}</p>
+{% endblock content %}
