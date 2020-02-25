@@ -1,4 +1,5 @@
 {% extends "nav.html" %}
+<<<<<<< Updated upstream
 {% block page_title %}
     <title>GeekText - Cart</title>
 {% endblock %}
@@ -7,5 +8,116 @@
         <h2>Shopping Cart</h2>
         <p>Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to
             fill your cart with books.</p>
+=======
+{% load static %}
+
+{% block page_title %}
+    <title>GeekText - Cart</title>
+{% endblock %}
+
+{% block content %}
+
+<style media="screen">
+  .book-image { float: left; width: 20%; }
+  .book-details { float: left; width: 37%; }
+  .book-price { float: left; width: 12%; }
+  .book-quantity { float: left; width: 10%; }
+  .book-removal { float: left; width: 9%; }
+  .book-line-price { float: left; width: 12%; text-align: right; }
+
+  .group:before,
+  .group:after {
+      content: '';
+      display: table;
+  }
+  .group:after {
+      clear: both;
+  }
+  .group {
+      zoom: 1;
+  }
+
+  .shopping-cart, .column-labels, .product, .totals-item {
+  @extend .group;
+}
+
+.book-item .book-price:before, .book-item .book-line-price:before, .totals-value:before {
+  content: '$';
+  label {
+  color: $color-label;
+}
+}
+</style>
+    <h2>Shopping Cart</h2><hr>
+    <div class="shopping-cart">
+
+        {% if shopping_list %}
+          <ol>
+            {% for book in shopping_list %}
+            {% endfor %}
+          </ol>
+        {% else %}
+          <p>Your cart is currently empty. Browse <a style="color: green" href="
+            {% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
+            <hr>
+
+            <!--- it is here now so its visible even when cart is empty ---!>
+              <div class="column-labels">
+                <label class="book-image">Image</label>
+                <label class="book-details">Product</label>
+                <label class="book-price">Price</label>
+                <label class="book-quantity">Quantity</label>
+                <label class="book-removal">Remove</label>
+                <label class="book-line-price">Total</label>
+              </div><hr>
+
+              <div class="book-item" style="padding:20px 30px; height:120px; display:flex; text-align:center">
+
+                <!--This is for the book image--!>
+                <div class="book-image" style="align:center; width:20%">
+                  <img src="{% static 'admin/img/def.jpg' %}" alt=""/>
+                </div>
+
+                <!--This is for the book title and author--!>
+                <div class="book_details" style="text-align:left;padding-top:10px; width:20%">
+                  <h5><a style="color:green"href="{% url 'browse' %}"><b>BOOK TITLE{{book.title}}</b></a></h5>
+                  <p>BOOK AUTHOR{{book.author}}</p>
+                </div>
+
+                <!--This is for the book price for one item--!>
+                <div class="book-price" style="padding-top:20px; width:15%">
+                  $11.99
+                </div>
+
+                <!--This is for the book quantity and plus/minus buttons--!>
+                <div class="book-quantity" style="padding-top:20px; width:15%">
+                  <button class="minus-button" type="button" name="button" style="background:green">
+                    <img src="../static/admin/img/tooltag-arrowright.svg" alt=""
+                    style="transform: scaleX(-1)"/>
+                  </button>
+                  <input type="text" name="name" value="1" style="text-align:center; width:32px; color: #43484D">
+                  <button class="plus-button" type="button" name="button" style="background:green">
+                    <img src="../static/admin/img/tooltag-arrowright.svg" alt=""/>
+                  </button>
+                </div>
+
+                <!--This is for the delete and save for later--!>
+                <div class="buttons" style="padding-top:20px; width:15%">
+                  <span class="save-button" type="button" name="button" style="padding:5px; display:inline-block">
+                    Save for later
+                  </span>
+                  <span class="delete-button "type="button" name="button" style="padding:5px; display:inline-block">
+                    <img src="../static/admin/img/inline-delete.svg" alt=""/>
+                  </span>
+                </div>
+
+                <div class="total-price" style="padding-top:20px; width:15%">
+                  $11.99*quantity
+                </div>
+
+              </div><hr>
+        {% endif %}
+
+>>>>>>> Stashed changes
     </div>
 {% endblock %}
