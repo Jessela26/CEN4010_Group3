@@ -1,123 +1,182 @@
 {% extends "nav.html" %}
-<<<<<<< Updated upstream
-{% block page_title %}
-    <title>GeekText - Cart</title>
-{% endblock %}
-{% block content %}
-    <div style="padding-left:16px">
-        <h2>Shopping Cart</h2>
-        <p>Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to
-            fill your cart with books.</p>
-=======
-{% load static %}
-
 {% block page_title %}
     <title>GeekText - Cart</title>
 {% endblock %}
 
 {% block content %}
-
 <style media="screen">
-  .book-image { float: left; width: 20%; }
-  .book-details { float: left; width: 37%; }
-  .book-price { float: left; width: 12%; }
-  .book-quantity { float: left; width: 10%; }
-  .book-removal { float: left; width: 9%; }
-  .book-line-price { float: left; width: 12%; text-align: right; }
-
-  .group:before,
-  .group:after {
-      content: '';
-      display: table;
-  }
-  .group:after {
-      clear: both;
-  }
-  .group {
-      zoom: 1;
-  }
-
-  .shopping-cart, .column-labels, .product, .totals-item {
-  @extend .group;
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;
+  background-color: #A9A9A9;
+  height: 1px;
 }
 
-.book-item .book-price:before, .book-item .book-line-price:before, .totals-value:before {
-  content: '$';
-  label {
-  color: $color-label;
+.shopping-cart{
+  display: flex;
+  flex-direction: column;
 }
+
+.book {
+  padding: 20px 30px;
+  height: 120px;
+  display: flex;
+}
+
+.labels {
+  padding: 20px 30px;
+  height: 50px;
+  display: flex;
+}
+
+.book-image {
+  width: 15%;
+  align: center;
+  margin-right: 50px;
+}
+
+.book-description {
+  width: 40%;
+  padding-top: 10px;
+  margin-right: 60px;
+}
+
+.book-description span {
+  display: block;
+  font-size: 14px;
+  color: #43484D;
+  font-weight: 400;
+}
+
+.book-quantity {
+  width: 10%;
+  padding-top: 20px;
+  margin-right: 60px;
+}
+
+.book-quantity input {
+  -webkit-appearance: none;
+  text-align: center;
+  width: 75px;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+.buttons {
+  padding-top: 20px;
+  width: 15%;
+}
+
+button {
+  background-color: #22B222;
+  text-align: center;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: forestgreen;
+}
+
+button:focus,
+input:focus {
+  outline:0;
+}
+
+.book-price {
+  width: 10%;
+  padding-top: 27px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+
+.book-quantity-price {
+  width: 10%;
+  padding-top: 27px;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
 }
 </style>
-    <h2>Shopping Cart</h2><hr>
+
+
     <div class="shopping-cart">
 
+      <!--Title-->
+      <h2>Shopping Cart</h2><hr>
+
+        <!--If there are any books in the user database-->
         {% if shopping_list %}
           <ol>
+            <!--For each book in user database-->
             {% for book in shopping_list %}
             {% endfor %}
           </ol>
+
+        <!--If user database is empty-->
         {% else %}
           <p>Your cart is currently empty. Browse <a style="color: green" href="
             {% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
-            <hr>
-
-            <!--- it is here now so its visible even when cart is empty ---!>
-              <div class="column-labels">
-                <label class="book-image">Image</label>
-                <label class="book-details">Product</label>
-                <label class="book-price">Price</label>
-                <label class="book-quantity">Quantity</label>
-                <label class="book-removal">Remove</label>
-                <label class="book-line-price">Total</label>
-              </div><hr>
-
-              <div class="book-item" style="padding:20px 30px; height:120px; display:flex; text-align:center">
-
-                <!--This is for the book image--!>
-                <div class="book-image" style="align:center; width:20%">
-                  <img src="{% static 'admin/img/def.jpg' %}" alt=""/>
-                </div>
-
-                <!--This is for the book title and author--!>
-                <div class="book_details" style="text-align:left;padding-top:10px; width:20%">
-                  <h5><a style="color:green"href="{% url 'browse' %}"><b>BOOK TITLE{{book.title}}</b></a></h5>
-                  <p>BOOK AUTHOR{{book.author}}</p>
-                </div>
-
-                <!--This is for the book price for one item--!>
-                <div class="book-price" style="padding-top:20px; width:15%">
-                  $11.99
-                </div>
-
-                <!--This is for the book quantity and plus/minus buttons--!>
-                <div class="book-quantity" style="padding-top:20px; width:15%">
-                  <button class="minus-button" type="button" name="button" style="background:green">
-                    <img src="../static/admin/img/tooltag-arrowright.svg" alt=""
-                    style="transform: scaleX(-1)"/>
-                  </button>
-                  <input type="text" name="name" value="1" style="text-align:center; width:32px; color: #43484D">
-                  <button class="plus-button" type="button" name="button" style="background:green">
-                    <img src="../static/admin/img/tooltag-arrowright.svg" alt=""/>
-                  </button>
-                </div>
-
-                <!--This is for the delete and save for later--!>
-                <div class="buttons" style="padding-top:20px; width:15%">
-                  <span class="save-button" type="button" name="button" style="padding:5px; display:inline-block">
-                    Save for later
-                  </span>
-                  <span class="delete-button "type="button" name="button" style="padding:5px; display:inline-block">
-                    <img src="../static/admin/img/inline-delete.svg" alt=""/>
-                  </span>
-                </div>
-
-                <div class="total-price" style="padding-top:20px; width:15%">
-                  $11.99*quantity
-                </div>
-
-              </div><hr>
         {% endif %}
+        <hr>
 
->>>>>>> Stashed changes
-    </div>
+
+        <div class="labels">
+          <div class="book-image"></div>
+          <div class="book-description"></div>
+          <div class="book-price">Price</div>
+          <div class="book-quantity">Quantity</div>
+          <div class="buttons"></div>
+          <div class="book-quantity-price">Total</div>
+        </div>
+        <hr>
+        <!--Shoppping list test-->
+        <div class="book">
+
+          <!--Book Image-->
+          <div class="book-image">
+            <img src="" alt="">
+          </div>
+
+          <!--Book Title and Author-->
+          <div class="book-description">
+            <h5><a style="color: green" href="{% url 'browse' %}">Book Title</a></h5>
+            <h6>Book Author</h6>
+            <p>Book Description</p>
+          </div>
+
+          <!--Book Price-->
+          <div class="book-price">
+            $$$
+          </div>
+
+          <!--Book Quantity-->
+          <div class="book-quantity">
+            <input type="number" name="quantity" value="1" min="1">
+          </div>
+
+          <div class="buttons">
+            <button class="save-for-later" type="button" name="button">Save for later</button>
+            <button class="remove-book" type="button" name="button">Remove</button>
+          </div>
+
+          <!--Book Price * Quantity-->
+          <div class="book-quantity-price">
+            $$$
+          </div>
+        </div>
+
+
+
+<script type="text/javascript">
+
+</script>
 {% endblock %}
