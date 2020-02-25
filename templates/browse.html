@@ -3,12 +3,28 @@
     <title>GeekText - Browse</title>
 {% endblock %}
 {% block content %}
+    {% load static %}
     <br/>
-    {% for book in books %}
-        <h2 style="color: green; padding-left: 50px;">{{ book.title }}</h2>
-        <h4 style="padding-left: 50px;">{{ book.author }}</h4>
-        <a style="padding-left: 50px; color: green" href="{% url 'details' book.id %}"><u>Details</u></a>
-        <br/>
-        <br/>
-    {% endfor %}
+    <div class="row" style="padding-bottom: 5em;">
+        {% for book in books %}
+            {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
+                <div class="col-lg-3 col-sm-3 col-xl-3">
+                    <div class="border border-success rounded shadow p-3 mb-5 bg-white text-center"
+                         style="border-width: 2px !important;">
+                        <img class="img-fluid backup_image" src="{% static img_ref %}" alt="{{ book.title }}">
+                        <h2 class="pt-3" style="color: green;">
+                            <a style="color: green" href="{% url 'details' book.id %}">
+                                {{ book.title }}
+                            </a>
+                        </h2>
+                        <h4>{{ book.author }}</h4>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+                    </div>
+                    <div class="row" style="padding-bottom: 5em">
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+        </div>
 {% endblock %}

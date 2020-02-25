@@ -10,9 +10,7 @@
         <div class="left-column">
             <div class="Image">
                 {% with 'Books/img/'|add:book.title|add:'.jpg' as image_ref %}
-                <a href="{% static image_ref %}">
                     <img src="{% static image_ref %}" alt="Missing Image">
-                </a>
                 {% endwith %}
             </div>
         </div>
