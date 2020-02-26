@@ -28,6 +28,7 @@ urlpatterns = [
                   url(r'^wishlist/$', views.wishlist, name='wishlist'),
                   url(r'^browse/', include('Browse.urls'), name='browse'),
                   url(r'^cart/$', views.cart, name='cart'),
+                  url(r'^checkout/$', views.checkout, name='checkout'),
                   url(r'^$', RedirectView.as_view(url='home', permanent=True), name='index'),
                   path('author/<str:book_author>/', include('Author.urls'), name='author'),
                   path('browse/details/<int:book_id>/', include('BookDetails.urls'), name='details')

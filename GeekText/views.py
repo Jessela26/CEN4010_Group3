@@ -20,6 +20,8 @@ def wishlist(request):
 def cart(request):
     return render(request, "shoppingcart.html")
 
+def checkout(request):
+    return render(request, "checkout.html")
 
 def browse(request):
     return render(request, "browse.html")
