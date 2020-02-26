@@ -1,9 +1,11 @@
 {% extends "nav.html" %}
+{% load static %}
 {% block page_title %}
     <title>GeekText - Cart</title>
 {% endblock %}
 
 {% block content %}
+
 <style media="screen">
 hr {
   border: 0;
@@ -25,12 +27,6 @@ hr {
   display: flex;
 }
 
-.labels {
-  padding: 20px 30px;
-  height: 50px;
-  display: flex;
-}
-
 .book-image {
   width: 15%;
   align: center;
@@ -39,8 +35,6 @@ hr {
 
 .book-description {
   width: 40%;
-  padding-top: 10px;
-  margin-right: 60px;
 }
 
 .book-description span {
@@ -52,26 +46,22 @@ hr {
 
 .book-quantity {
   width: 10%;
-  padding-top: 20px;
+  text-align: center;
   margin-right: 60px;
 }
 
 .book-quantity input {
-  -webkit-appearance: none;
   text-align: center;
   width: 75px;
-  font-size: 16px;
   color: #43484D;
-  font-weight: 300;
 }
 
 .buttons {
-  padding-top: 20px;
   width: 15%;
 }
 
 button {
-  background-color: #22B222;
+  background-color: forestgreen;
   text-align: center;
   color: white;
   width: 120px;
@@ -80,7 +70,7 @@ button {
 }
 
 button:hover {
-  background-color: forestgreen;
+  background-color: green;
 }
 
 button:focus,
@@ -90,21 +80,34 @@ input:focus {
 
 .book-price {
   width: 10%;
-  padding-top: 27px;
   text-align: center;
-  font-size: 16px;
-  color: #43484D;
-  font-weight: 300;
 }
 
 .book-quantity-price {
   width: 10%;
-  padding-top: 27px;
   text-align: center;
-  font-size: 16px;
-  color: #43484D;
-  font-weight: 300;
 }
+
+.labels {
+  padding: 5px 30px;
+  text-align: center;
+  display: flex;
+}
+
+.totals {
+  width: 30%;
+  float: right;
+  padding: 50px;
+}
+.totals-book {
+  width: 250px;
+}
+.book .book-price:before, .book .book-quantity-price:before,
+.totals .subtotal:before, .totals .tax:before,
+.totals .shipping:before, .totals .grandtotal:before{
+  content: '$  ';
+}
+
 </style>
 
 
@@ -143,19 +146,18 @@ input:focus {
 
           <!--Book Image-->
           <div class="book-image">
-            <img src="" alt="">
+            <img src="../static/Books/img/Browse/no_book.png" alt="">
           </div>
 
           <!--Book Title and Author-->
           <div class="book-description">
-            <h5><a style="color: green" href="{% url 'browse' %}">Book Title</a></h5>
-            <h6>Book Author</h6>
-            <p>Book Description</p>
+            <h5><a style="color: green" href="{% url 'browse' %}" id="title"></a></h5>
+            <h6 id="author">Book Author</h6>
+            <p id="description">Book Description</p>
           </div>
 
           <!--Book Price-->
-          <div class="book-price">
-            $$$
+          <div class="book-price" id="price">
           </div>
 
           <!--Book Quantity-->
@@ -170,13 +172,104 @@ input:focus {
 
           <!--Book Price * Quantity-->
           <div class="book-quantity-price">
-            $$$
           </div>
         </div>
+      </div><hr>
 
+<div class="totals">
+  <table>
+    <tr>
+      <th class="totals-book">Subtotal</th>
+      <td class="subtotal">71.97</td>
+    </tr>
+    <tr>
+      <th class="totals-book">Tax (6%)</th>
+      <td class="tax">3.60</td>
+    </tr>
+    <tr>
+      <th class="totals-book">Shipping Rate</th>
+      <td class="shipping">5.99</td>
+    <tr>
+      <th class="totals-book">TOTAL</th>
+      <td class="grandtotal">90.57</td>
+    </tr>
+  </table>
+  <button class="checkout" onclick="window.location.href = {% url 'checkout' %};">Check Out</button>
+</div>
 
 
 <script type="text/javascript">
+var taxRate = 0.06;
+var shippingRate = 5.99;
+var fadeTime = 300;
 
+var testbook = {
+    title: "Harry Potter",
+    author: "JK Rowling",
+    author_bio: "She writes book for monies",
+    publisher: "Penguin",
+    description: "A magical world split in 7 books",
+    price: 12.99
+};
+
+document.getElementById("title").innerHTML = testbook.title;
+document.getElementById("author").innerHTML = testbook.author;
+document.getElementById("description").innerHTML = testbook.description;
+document.getElementById("price").innerHTML = testbook.price;
+
+$('.book-quantity input').change( function(){ updateQuantity(this); } );
+$('.save-for-later button').change( function(){ removeItem(this); } );
+$('.remove-book button').change( function(){ removeItem(this); } );
+
+function recalculateCart()
+{
+  var subtotal = 0;
+
+  $('.book').each(function(){
+    subtotal += parseFloat($(this).children('.book-quantity-price').text());
+  });
+
+  var tax = subtotal * taxRate;
+  var shipping = (subtotal > 0 ? shippingRate : 0);
+  var total = subtotal + tax + shipping;
+
+  $('.totals-value').fadeOut(fadeTime, function() {
+    $('#cart-subtotal').html(subtotal.toFixed(2));
+    $('#cart-tax').html(tax.toFixed(2));
+    $('#cart-shipping').html(shipping.toFixed(2));
+    $('#cart-grandtotal').html(grandtotal.toFixed(2));
+    if(total == 0){
+      $('.checkout').fadeOut(fadeTime);
+    }else{
+      $('.checkout').fadeIn(fadeTime);
+    }
+    $('.totals-value').fadeIn(fadeTime);
+  });
+}
+
+function updateQuantity(quantityInput)
+{
+  var bookRow = $(quantityInput).parent().parent();
+  var price = parseFloat(bookRow.children('.book-price').text());
+  var quantity = $(quantityInput).val();
+  var linePrice = price * quantity;
+
+  bookRow.children('.book-line-price').each(function () {
+    $(this).fadeOut(fadeTime, function() {
+      $(this).text(linePrice.toFixed(2));
+      recalculateCart();
+      $(this).fadeIn(fadeTime);
+    });
+  });
+}
+
+function removeItem(removeButton)
+{
+  var bookRow = $(removeButton).parent().parent();
+  bookRow.slideUp(fadeTime, function() {
+    bookRow.remove();
+    recalculateCart();
+  });
+}
 </script>
 {% endblock %}
