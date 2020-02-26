@@ -1,2 +1,5 @@
 # Ignore any unnecessary files in the IDE directory.
 .idea/
+.vscode/
+env/
+*/__pycache__

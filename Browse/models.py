@@ -10,3 +10,4 @@ class Book(models.Model):
     description = models.CharField(max_length=1000, null=True)
     date_published = models.CharField(max_length=50, null=True)
     rating = models.IntegerField(null=True)
+    price = models.FloatField(null=True)
