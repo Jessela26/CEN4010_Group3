@@ -29,6 +29,7 @@ hr {
 
 .book-image {
   width: 15%;
+  height: 100px;
   align: center;
   margin-right: 50px;
 }
@@ -76,6 +77,10 @@ button:hover {
 button:focus,
 input:focus {
   outline:0;
+}
+
+img {
+  height: 100px;
 }
 
 .book-price {
@@ -146,7 +151,7 @@ input:focus {
 
           <!--Book Image-->
           <div class="book-image">
-            <img src="../static/Books/img/Browse/no_book.png" alt="">
+            <img src="{% static 'Books/img/Algorithms For Dummies.jpg' %}" alt="">
           </div>
 
           <!--Book Title and Author-->
