@@ -93,13 +93,24 @@ img {
   text-align: center;
 }
 
+.save-container{
+  border-style: groove;
+  border-radius: 10px;
+  width: 65%;
+  float: left;
+  padding: 20px;
+}
+
 .labels {
   padding: 5px 30px;
   text-align: center;
   display: flex;
+  height: 40px;
 }
 
 .totals {
+  border-style: groove;
+  border-radius: 10px;
   width: 30%;
   float: right;
   padding: 50px;
@@ -115,71 +126,94 @@ img {
 
 </style>
 
-
     <div class="shopping-cart">
 
       <!--Title-->
-      <h2>Shopping Cart</h2><hr>
-
+      <h2>Shopping Cart</h2>
         <!--If there are any books in the user database-->
-        {% if shopping_list %}
-          <ol>
+        {% if 1 == 1 %}
             <!--For each book in user database-->
-            {% for book in shopping_list %}
-            {% endfor %}
-          </ol>
-
+            {% for book in books %}
+              {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
+              <!--Shopping list test-->
+              <div class="book" id="{{ book.id }}">
+                <!--Book Image-->
+                <div class="book-image" >
+                  <img src="{% static img_ref %}" alt="{{ book.title }}">
+                </div>
+                <!--Book Title and Author-->
+                <div class="book-description">
+                  <h5><a style="color: green" href="{% url 'browse' %}" id="title"></a></h5>
+                  <h6 id="author">{{ book.author }}</h6>
+                  <p id="description">{{ book.description }}</p>
+                </div>
+                <!--Book Price-->
+                <div class="book-price" id="price">
+                  {{ book.price }}
+                </div>
+                <!--Book Quantity-->
+                <div class="book-quantity">
+                  <input type="number" name="quantity" value="1" min="1">
+                </div>
+                <!--Buttons to save for later or remove-->
+                <div class="buttons">
+                  <button class="save-for-later" type="button" name="button">Save for later</button>
+                  <button class="remove-book" type="button" name="button">Remove</button>
+                </div>
+                <!--Book Price * Quantity-->
+                <div class="book-quantity-price">
+                  {{ book.price }}
+                </div>
+              </div>
+            <hr>
+            {% endwith %}
+          {% endfor %}
+          </div>
         <!--If user database is empty-->
         {% else %}
           <p>Your cart is currently empty. Browse <a style="color: green" href="
             {% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
         {% endif %}
-        <hr>
 
-
+        <!--Shopping list test-->
         <div class="labels">
           <div class="book-image"></div>
           <div class="book-description"></div>
-          <div class="book-price">Price</div>
-          <div class="book-quantity">Quantity</div>
+          <div class="book-price"><b>Price</b></div>
+          <div class="book-quantity"><b>Quantity</b></div>
           <div class="buttons"></div>
-          <div class="book-quantity-price">Total</div>
+          <div class="book-quantity-price"><b>Total</b></div>
         </div>
         <hr>
-        <!--Shoppping list test-->
-        <div class="book">
 
+        <!--Shopping list test-->
+        <div class="book" id="list">
           <!--Book Image-->
           <div class="book-image">
             <img src="{% static 'Books/img/Algorithms For Dummies.jpg' %}" alt="">
           </div>
-
           <!--Book Title and Author-->
           <div class="book-description">
             <h5><a style="color: green" href="{% url 'browse' %}" id="title"></a></h5>
             <h6 id="author">Book Author</h6>
             <p id="description">Book Description</p>
           </div>
-
           <!--Book Price-->
           <div class="book-price" id="price">
           </div>
-
           <!--Book Quantity-->
           <div class="book-quantity">
             <input type="number" name="quantity" value="1" min="1">
           </div>
-
+          <!--Buttons to save for later or remove-->
           <div class="buttons">
             <button class="save-for-later" type="button" name="button">Save for later</button>
-            <button class="remove-book" type="button" name="button">Remove</button>
+            <button class="remove-book" type="button" name="button" id="remmm">Remove</button>
           </div>
-
           <!--Book Price * Quantity-->
           <div class="book-quantity-price">
           </div>
-        </div>
-      </div><hr>
+        </div><hr>
 
 <div class="totals">
   <table>
@@ -194,6 +228,7 @@ img {
     <tr>
       <th class="totals-book">Shipping Rate</th>
       <td class="shipping">5.99</td>
+    </tr>
     <tr>
       <th class="totals-book">TOTAL</th>
       <td class="grandtotal">90.57</td>
@@ -202,18 +237,36 @@ img {
   <button class="checkout" onclick="window.location.href = {% url 'checkout' %};">Check Out</button>
 </div>
 
+<div class="save-container">
+  <h3>Save for Later</h3>
+  <p>You saved these items to purchase at a later date.</p>
+  <hr>
+  {% for book in saved %}
+  {% endfor %}
+</div>
+
 
 <script type="text/javascript">
+  //var database = [];
+  //{% for book in books %}
+  //  var testbook = {
+  //      title:"{{book.title}}",
+  //      author: "{{book.author}}",
+  //      description: "{{book.description}}",
+  //      price: {{book.price}}
+  //  };
+  //  console.log(testbook);
+  //  database.push(testbook);
+  //{% endfor %}
+
 var taxRate = 0.06;
 var shippingRate = 5.99;
 var fadeTime = 300;
 
 var testbook = {
-    title: "Harry Potter",
+    title:"Harry Potter",
     author: "JK Rowling",
-    author_bio: "She writes book for monies",
-    publisher: "Penguin",
-    description: "A magical world split in 7 books",
+    description: "A magical world divided in 7 books",
     price: 12.99
 };
 
@@ -222,9 +275,11 @@ document.getElementById("author").innerHTML = testbook.author;
 document.getElementById("description").innerHTML = testbook.description;
 document.getElementById("price").innerHTML = testbook.price;
 
+document.getElementById("remmm").onclick = function(){removeBook(this)};
+
 $('.book-quantity input').change( function(){ updateQuantity(this); } );
-$('.save-for-later button').change( function(){ removeItem(this); } );
-$('.remove-book button').change( function(){ removeItem(this); } );
+$('.save-for-later button').change( function(){ removeBook(this); } );
+$('.remove-book button').change( function(){ removeBook(this); } );
 
 function recalculateCart()
 {
@@ -268,13 +323,11 @@ function updateQuantity(quantityInput)
   });
 }
 
-function removeItem(removeButton)
+function removeBook(removeButton)
 {
   var bookRow = $(removeButton).parent().parent();
-  bookRow.slideUp(fadeTime, function() {
-    bookRow.remove();
-    recalculateCart();
-  });
+  bookRow.slideUp(fadeTime, function() {bookRow.remove();
+                                        recalculateCart();});
 }
 </script>
 {% endblock %}
