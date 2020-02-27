@@ -17,7 +17,7 @@ html, body {
   width: 55%;
   position: relative;
   left: 30px;
-  top: 200px;
+  top: 150px;
 }
 
 .right-column {
@@ -47,8 +47,13 @@ img {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 8px;
-  width: 400px;
+  width: 500px;
+  transition: 0.3s;
 }
+
+img:hover{opacity: 0.7};
+
+
 
 .product-price {
   display: flex;
@@ -112,5 +117,6 @@ img {
 }
 
 .dropdown a:hover {background-color: #ddd;}
+
 
 .show {display: block;}
