@@ -6,7 +6,7 @@
       "title": "Python for Data Analysis",
       "author": "Wes Mckinney",
       "author_bio": "I have been developing data analysis software, mostly for use in the Python programming language. My primary objective has been improving user productivity, increasing performance and efficiency, and enhancing data interoperability.",
-      "description": "Data Wrangling with Pandas, NumPy, and IPython",
+      "description": "Python for Data Analysis is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python. It is also a practical, modern introduction to scientific computing in Python, tailored for data-intensive applications. This is a book about the parts of the Python language and libraries you’ll need to effectively solve a broad set of data analysis problems. This book is not an exposition on analytical methods using Python as the implementation language.",
       "publisher": "O'Reilly",
       "date_published": "10/05/2012",
       "price": 23.99
@@ -16,7 +16,7 @@
     "model": "Browse.book",
     "pk": 2,
     "fields": {
-      "title": "Java Script 20 Lessons to Successful Web Development",
+      "title": "JavaScript 20 Lessons to Successful Web Development",
       "author": "Robin Nixon",
       "author_bio": "Robert Nixon is a prolific author on programming and Web Development with his books having been translated into numerous foreign languages - frequently topping the charts.",
       "description": "This complete and integrated learning tool provides easy-to-follow lessons that feature clear explanations, sample code and exercises, and video tutorials.",
@@ -212,7 +212,7 @@
     "pk": 17,
     "fields": {
       "title": "PHP, MySQL, & JavaScript All-in-One For Dummies",
-      "author": "Blum",
+      "author": "Richard Blum",
       "author_bio": "Richard Blum has more than 30 years of experience as a systems administrator and programmer. He teaches online courses in PHP, JavaScript, HTML5, and CSS3 programming, and authored the latest edition of Linux For Dummies.",
       "description": "It takes a powerful suite of technologies to drive the most-visited websites in the world. PHP, mySQL, JavaScript, and other web-building languages serve as the foundation for application development and programming projects at all levels of the web.",
       "publisher": "For Dummies",
