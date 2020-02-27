@@ -34,11 +34,13 @@ html, body {
 .description h1 {
   font-weight: 300;
   font-size: 52px;
+  color: darkgreen;
   letter-spacing: -2px;
 }
  p {
   font-size: 16px;
   font-weight: 300;
+  color: darkgreen;
   line-height: 24px;
 }
 img {
