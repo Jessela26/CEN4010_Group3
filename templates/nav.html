@@ -47,11 +47,13 @@
                 {% endif %}
                 {% if 'browse' in request.path or 'author' in request.path %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
+                                class="sr-only">(current)</span></a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
+                                class="sr-only">(current)</span></a>
                     </li>
                 {% endif %}
                 {% if 'wishlist' in request.path %}
