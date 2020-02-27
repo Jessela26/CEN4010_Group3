@@ -7,7 +7,7 @@ from Browse.models import Book
 def browse(request):
     args = {}
     books = Book.objects.order_by('title')
-    paginator = Paginator(books, 10)
+    paginator = Paginator(books, 9)
     for book in books:
         if book.description.__contains__('.'):
             book.description = book.description.split('.', 1)[0] + '.'
