@@ -76,7 +76,7 @@
                         <a class="nav-link" href="{% url 'cart' %}">Cart</a>
                     </li>
                 {% endif %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     {% if 'profile' in request.path %}
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
