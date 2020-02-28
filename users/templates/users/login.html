@@ -2,6 +2,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section" style="margin-right: 775px; margin-left: 25px;">
+        <div class = "col-md-4">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -9,7 +18,7 @@
                 {{ form|crispy }} <!--crispy form styling --> 
             </fieldset>
             <div class="form-group">
-                <button class="btn-outline-info" type="submit">Login</button>
+                <button class="btn btn-success" type="submit">Login</button>
             </div>
         </form>
         <div class="border-top pt-3">

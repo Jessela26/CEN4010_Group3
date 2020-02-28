@@ -10,3 +10,12 @@ class UserRegisterForm(UserCreationForm):
     class Meta: #namespace for configurations for user models
         model = User
         fields = ['username', 'email','first_name', 'last_name','password1', 'password2']
+
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
