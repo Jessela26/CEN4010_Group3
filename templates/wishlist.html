@@ -22,6 +22,7 @@ var database = [];
 {% for book in books %}
     database.push('{{book.title}}');
 {% endfor %}
+console.log(database);
 //var database = ["Flat Stanley by John Cena", "The Never Ending Story by Elvis Presley", "Hairy by Me", "Buy, By, or Bye? by Kendrick Lallama"];
 
 function get(name){
@@ -736,3 +737,4 @@ function clearTable(wishlistName){
 </body>
 
 {% endblock %}
+
