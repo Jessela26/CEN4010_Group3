@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.html import escape
-
+from Browse.models import Book
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -18,7 +18,17 @@ def wishlist(request):
 
 
 def cart(request):
-    return render(request, "shoppingcart.html")
+    args = {}
+    books = Book.objects.all()
+    for book in books:
+        if book.description.__contains__('.'):
+            book.description = book.description.split('.', 1)[0] + '.'
+        if book.description.__contains__('!'):
+            book.description = book.description.split('!', 1)[0] + '!'
+        if book.description.__contains__('?'):
+            book.description = book.description.split('?', 1)[0] + '?'
+    args['books'] = books
+    return render(request, "shoppingcart.html", args)
 
 
 def checkout(request):
