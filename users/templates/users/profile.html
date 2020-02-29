@@ -1,7 +1,7 @@
 {% extends "nav.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h2 class="account-heading" style="margin-right: 775px; margin-left: 24px;">{{ user.first_name}} {{user.last_name}}</h2>
+    <h2 class="account-heading" style="margin-right: 775px; margin-left: 20px;">{{ user.first_name}} {{user.last_name}}</h2>
     <p class="secondary-text" style="margin-right: 775px; margin-left: 24px;">{{user.email}}</p>
     <div class = "col-md-4">
         {% if messages %}
