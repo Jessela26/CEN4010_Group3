@@ -9,8 +9,3 @@ class Profile(models.Model):#associating User model with Profile model
         return f'{self.user.username} Profile'
 
 
-
-
-
-
-        

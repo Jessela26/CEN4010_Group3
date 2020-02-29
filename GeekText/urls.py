@@ -41,4 +41,5 @@ urlpatterns = [
                   url(r'logout/$', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
                   # class based view
                   url(r'profile/$', user_views.profile, name='profile'),
+                  url(r'password_change/$', user_views.change_password, name='change_password'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
