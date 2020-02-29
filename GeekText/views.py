@@ -30,8 +30,10 @@ def cart(request):
     args['books'] = books
     return render(request, "shoppingcart.html", args)
 
+
 def checkout(request):
     return render(request, "checkout.html")
+
 
 def browse(request):
     return render(request, "browse.html")

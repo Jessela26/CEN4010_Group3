@@ -6,7 +6,20 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
+    
+
 
     class Meta: #namespace for configurations for user models
         model = User
         fields = ['username', 'email','first_name', 'last_name','password1', 'password2']
+
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+
+

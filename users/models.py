@@ -8,4 +8,4 @@ class Profile(models.Model):#associating User model with Profile model
     def __str__(self):
         return f'{self.user.username} Profile'
 
-        
+

@@ -47,11 +47,13 @@
                 {% endif %}
                 {% if 'browse' in request.path or 'author' in request.path %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
+                                class="sr-only">(current)</span></a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'browse' %}">Browse <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
+                                class="sr-only">(current)</span></a>
                     </li>
                 {% endif %}
                 {% if 'wishlist' in request.path %}
@@ -74,42 +76,42 @@
                         <a class="nav-link" href="{% url 'cart' %}">Cart</a>
                     </li>
                 {% endif %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     {% if 'profile' in request.path %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                         </li>
                     {% endif %}
                     {% if 'logout' in request.path %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
                     {% endif %}
                 {% else %}
                     {% if 'register' in request.path %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{%url 'register'%}">Register</a>
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{%url 'register'%}">Register</a>
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>
                     {% endif %}
                     {% if 'login' in request.path %}
                         <li class="nav-item active">
-                            <a class="nav-link" href="{%url 'login'%}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{%url 'login'%}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
                 {% endif %}
@@ -117,10 +119,51 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid" id="content">
     {% block content %}
     {% endblock %}
 </div>
+{% if 'browse' in request.path and not 'details' in request.path %}
+    <div class="d-flex justify-content-center">
+        <footer style="bottom: 0" class="position-fixed">
+            <ul class="pagination">
+                {% if not books.has_previous %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page=1">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a style="color: black !important; transition: all 500ms" class="page-link"
+                           href="?page={{ books.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+                {% for page in books.paginator.page_range %}
+                    {% if forloop.counter == books.number %}
+                        <li class="page-item active">
+                            <a style="color: white !important; background-color: black; border-color: black; transition: all 500ms"
+                               class="page-link"
+                               href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a style="color: black !important; transition: all 500ms" class="page-link"
+                               href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if not books.has_next %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page={{ books.end_index }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a style="color: black !important; transition: all 500ms" class="page-link"
+                           href="?page={{ books.next_page_number }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </footer>
+    </div>
+{% endif %}
 </body>
 </html>

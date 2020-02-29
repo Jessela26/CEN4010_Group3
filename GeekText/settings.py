@@ -120,3 +120,5 @@ USE_TZ = True
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join('static'),)
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #CSS Template Styling
+LOGIN_URL = 'login' #redirects url access from unauthenticated profile view to login url

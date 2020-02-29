@@ -26,7 +26,7 @@ from . import views
 urlpatterns = [
                   url(r'^admin/', admin.site.urls, name='admin'),
                   url(r'^home/', views.homepage, name='home'),
-                  url(r'^wishlist/$', views.wishlist, name='wishlist'),
+                  url(r'^wishlist/', include('Wishlist.urls'), name='wishlist'),
                   url(r'^browse/', include('Browse.urls'), name='browse'),
                   url(r'^cart/$', views.cart, name='cart'),
                   url(r'^checkout/$', views.checkout, name='checkout'),
@@ -41,4 +41,5 @@ urlpatterns = [
                   url(r'logout/$', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
                   # class based view
                   url(r'profile/$', user_views.profile, name='profile'),
+                  url(r'password_change/$', user_views.change_password, name='change_password'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
