@@ -26,7 +26,7 @@ from . import views
 urlpatterns = [
                   url(r'^admin/', admin.site.urls, name='admin'),
                   url(r'^home/', views.homepage, name='home'),
-                  url(r'^wishlist/', include('Wishlist.urls'), name='wishlist'),
+                  url(r'^wishlist/$', views.wishlist, name='wishlist'),
                   url(r'^browse/', include('Browse.urls'), name='browse'),
                   url(r'^cart/$', views.cart, name='cart'),
                   url(r'^checkout/$', views.checkout, name='checkout'),
