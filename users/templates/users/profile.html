@@ -20,8 +20,9 @@
             {{ u_form|crispy }} <!--crispy form styling --> 
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-success" type="submit">Update</button>
+            <button class="btn btn-success" type="submit">Update Profile</button>
             <a href="{% url 'change_password' %}"class="btn btn-success" type="submit">Change Password</a>
+            <a href="{% url 'payment_info' %}"class="btn btn-success" type="submit">Add Payment Info</a>
         </div>
     </form>
 {% endblock content %} 
