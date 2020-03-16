@@ -19,6 +19,12 @@ hr {
   display: flex;
   flex-direction: column;
 }
+.labels {
+  padding: 5px 30px;
+  text-align: center;
+  display: flex;
+  height: 40px;
+}
 .book {
   padding: 20px 30px;
   display: flex;
@@ -26,6 +32,10 @@ hr {
 }
 .book-image {
   width: 15%;
+  height: 120px;
+}
+img.book-image {
+  width: auto;
   height: 120px;
 }
 .book-information {
@@ -40,7 +50,6 @@ hr {
 .book-quantity {
   width: 10%;
   text-align: center;
-  margin-right: 60px;
 }
 .book-quantity input {
   text-align: center;
@@ -50,7 +59,9 @@ hr {
 .buttons {
   width: 15%;
 }
-button {
+button.save-for-later,
+button.remove-book,
+button.clear-cart{
   background-color: forestgreen;
   text-align: center;
   color: white;
@@ -58,44 +69,60 @@ button {
   height: 40px;
   border-radius: 10px;
 }
+button.save-for-later:hover,
+button.remove-book:hover,
+button.clear-cart:hover{
+  background-color: green;
+  font-weight: bold;
+}
+.book-price, .book-quantity-price {
+  width: 10%;
+  text-align: center;
+}
 .empty-cart {
   padding-bottom: 20px;
   padding-left: 50px
 }
-button:hover {
-  background-color: green;
-}
-button:focus,
-input:focus {
-  outline:0;
-}
-img {
-  height: 100px;
-}
-.book-price {
-  width: 10%;
-  text-align: center;
-}
-.book-quantity-price {
-  width: 10%;
-  text-align: center;
-}
 .save-container{
   border-style: groove;
   border-radius: 10px;
-  width: 65%;
+  width: 68%;
   float: left;
   padding: 20px;
 }
 .saves{
-  width: 65%;
+  font-size: smaller;
   display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border-bottom: 1px solid lightgray;
 }
-.labels {
-  padding: 5px 30px;
-  text-align: center;
-  display: flex;
-  height: 40px;
+.save-image{
+  width: 15%;
+  padding: 5px;
+}
+img.save-image {
+  width: auto;
+  height: 80px;
+}
+.save-title{
+  width: 65%;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+.save-buttons{
+  width: 20%;
+  padding: 5px;
+}
+button.add, button.remove{
+  border: none;
+  background-color: inherit;
+  width: 30px;
+  height: 30px;
+}
+button.add:hover, button.remove:hover{
+  font-size: 150%;
 }
 .totals {
   border-style: groove;
@@ -105,33 +132,24 @@ img {
   padding: 50px;
 }
 .totals-book {
-  width: 250px;
+  width: 50%;
+  float: left;
+}
+.subtotal, .tax, .shipping, .grandtotal {
+  width: 50%;
+  float: right;
+  text-align: right;
 }
 .book .book-price:before, .book .book-quantity-price:before,
 .totals .subtotal:before, .totals .tax:before,
 .totals .shipping:before, .totals .grandtotal:before{
   content: '$  ';
 }
-.clear-cart
-{
-    padding-top: 50px;
+.clear-cart{
+  margin: 10px;
 }
 </style>
-<script>
-  $(document).ready(function () {
-      $(".book-information").hover(
-          function () {
-              $(this).addClass('shadow-sm').css('cursor', 'pointer');
-          }, function () {
-              $(this).removeClass('shadow-sm');
-          }
-      ).click(function () {
-          let url = "{% url 'details' 999 %}";
-          let id = $(this).attr('id');
-          document.location.href = url.replace('999', id);
-      });
-  });
-</script>
+
 <div class="shopping-cart">
   <!--Title-->
   <h2>Shopping Cart</h2>
@@ -152,13 +170,13 @@ img {
       <div class="book" id="{{ book.id }}">
         <!--Book Image-->
         <div class="book-image" id="book-image">
-          <img src="{% static img_ref %}" alt="">
+          <img class="book-image" src="{% static img_ref %}">
         </div>
         <!--Book Title and Author-->
         <div class="book-information" id="book-information">
-          <h5><a style="color: green"id="book-title">{{ book.title|truncatechars:26 }}</a></h5>
-          <h6 id="book-author">{{ book.author }}</h6>
-          <p id="book-description">{{ book.description }}</p>
+          <h5><a style="color: green" class="book-title">{{ book.title }}</a></h5>
+          <h6 class="book-author">{{ book.author }}</h6>
+          <p class="book-description">{{ book.description|truncatechars:250 }}</p>
         </div>
         <!--Book Price-->
         <div class="book-price" id="book-price">
@@ -170,14 +188,12 @@ img {
         </div>
         <!--Buttons to save for later or remove-->
         <div class="buttons">
-          <button id="save-for-later" class={{book.id}}">Save for later</button>
-          <button id="remove-book" class="{{book.id}}">Remove</button>
+          <button class="save-for-later" id={{book.id}}">Save for later</button>
+          <button class="remove-book" id="{{book.id}}">Remove</button>
         </div>
         <!--Book Price * Quantity-->
         <div class="book-quantity-price" id="book-quantity-price">
-          {% with 1 as quantity %}
-          {{book.price|mul:quantity}}
-          {% endwith %}
+          {{ book.price }}
         </div>
       </div>
       {% endwith %}
@@ -192,14 +208,15 @@ img {
         {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
           <div class="saves">
             <div class="save-image">
-              <img src="{% static img_ref %}" style="padding:5px">
+              <img class="save-image" src="{% static img_ref %}">
             </div>
             <div class="save-title">
-              <p>{{book.title}}</p>
+              <p>{{book.title|truncatechars:30}}</p>
+              <p class="book-description">{{ book.description|truncatechars:100 }}</p>
             </div>
-            <div class="add-to-cart">
-              <button class="add">Add to Cart</button>
-              <button class="remove">Remove</button>
+            <div class="save-buttons">
+              <button class="add">🛒</button>
+              <button class="remove">❌</button>
             </div>
           </div>
         {% endwith %}
@@ -207,168 +224,139 @@ img {
       </div>
       <div class="totals" id="tot">
         <span>
-            <span style="overflow: hidden;">
-              <p class="totals-book" style="float: left;">Subtotal</p>
-              <p class="subtotal" style="float: right;">
-                15000
-              </p>
+            <span>
+              <p class="totals-book">Subtotal</p>
+              <p class="subtotal"></p>
             </span>
-            <span style="overflow: hidden;">
-              <p class="totals-book" style="float: left;">Tax (6%)</p>
-              <p class="tax" style="float: right;">{{subtotal|mul:.06}}</p>
+            <span>
+              <p class="totals-book">Tax (6%)</p>
+              <p class="tax">{{subtotal|mul:.06}}</p>
             </span>
-            <span style="overflow: hidden;">
-              <p class="totals-book" style="float: left;">Shipping Rate</p>
-              <p class="shipping" style="float: right;">5.99</p>
+            <span>
+              <p class="totals-book">Shipping Rate</p>
+              <p class="shipping">5.99</p>
             </span><hr>
-            <span style="overflow: hidden;">
-              <p class="totals-book" style="float: left;">TOTAL</p>
-              <p class="grandtotal" style="float: right;">90.57</p>
+            <span>
+              <p class="totals-book">TOTAL</p>
+              <p class="grandtotal">90.57</p>
             </span>
         </span>
         <button class="checkout" onclick="window.location.href = {% url 'checkout' %};">Check Out</button>
       </div>
     </span>
     <div class="clear-cart">
-      <button id="clear-cart" class="{{book.id}}">Clear All</button>
+      <button class="clear-cart" id="{{book.id}}">Clear</button>
     </div>
   </div>
     <!--If user database is empty-->
   {% else %}
     <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
   {% endif %}
-  <script>
-    $(document).ready(function(){
-      console.log("ready");
-      $("#emp.empty-cart").hide();
+<script>
+  var fadeTime = 300;
+  var taxRate = 0.05;
+var shippingRate = 15.00;
+  $(document).ready(function () {
+    $(".book-information").hover(
+        function () {
+            $(this).addClass('shadow-sm').css('cursor', 'pointer');
+        }, function () {
+            $(this).removeClass('shadow-sm');
+        }
+    ).click(function () {
+        let url = "{% url 'details' 999 %}";
+        let id = $(this).attr('id');
+        document.location.href = url.replace('999', id);
     });
-    $("#clear-cart").click(function(){
-      console.log("cart is cleared");
-      $("{{book.id}}.book").remove();
-      $("#col-title.labels").remove();
-      $("#emp.empty-cart").show(1000);
-      $("#tot.totals").remove();
-      $("#clear-cart").hide();
+  });
+  $(document).ready(function(){
+    console.log("ready");
+    $("#emp.empty-cart").hide();
+  });
+  $(".clear-cart").click(function(){
+    console.log("cart is cleared");
+    $("{{book.id}}.book").remove();
+    $("#col-title.labels").remove();
+    $("#emp.empty-cart").show(1000);
+    $("#tot.totals").remove();
+    $(".clear-cart").hide();
+  });
+  $('.book-quantity input').change( function() {
+    updateQuantity(this);
+  });
+
+  /* Recalculate cart */
+function recalculateCart()
+{
+  var subtotal = 0;
+
+  /* Sum up row totals */
+  $('.product').each(function () {
+    subtotal += parseFloat($(this).children('.product-line-price').text());
+  });
+
+  /* Calculate totals */
+  var tax = subtotal * taxRate;
+  var shipping = (subtotal > 0 ? shippingRate : 0);
+  var total = subtotal + tax + shipping;
+
+  /* Update totals display */
+  $('.totals-value')
+    $('.subtotal').html(subtotal.toFixed(2));
+    $('.tax').html(tax.toFixed(2));
+    $('.shipping').html(shipping.toFixed(2));
+    $('.grandtotal').html(total.toFixed(2));
+    /*if(total == 0){
+      $('.checkout').fadeOut(fadeTime);
+    }else{
+      $('.checkout').fadeIn(fadeTime);
+    }*/
+    $('.totals-value').show();
+}
+  /* Update quantity */
+  function updateQuantity(quantityInput)
+  {
+    /* Calculate line price */
+    var productRow = $(quantityInput).parent().parent();
+    var price = parseFloat(productRow.children('.book-price').text());
+    var quantity = $(quantityInput).val();
+    var linePrice = price * quantity;
+
+    /* Update line price display and recalc cart totals */
+    productRow.children('.book-quantity-price').each(function () {
+        $(this).text(linePrice.toFixed(2));
+        recalculateCart();
     });
-    $("#remove-book.1").click(function(){
-      console.log("Item 1 removed");
-      $("#1.book").remove();
-    });
-    $("#remove-book.2").click(function(){
-      console.log("Item 2 removed");
-      $("#2.book").remove();
-    });
-    $("#remove-book.3").click(function(){
-      console.log("Item 3 removed");
-      $("#3.book").remove();
-    });
-    $("#remove-book.4").click(function(){
-      console.log("Item 4 removed");
-      $("#4.book").remove();
-    });
-    $("#remove-book.5").click(function(){
-      console.log("Item 5 removed");
-      $("#5.book").remove();
-    });
-    $("#remove-book.6").click(function(){
-      console.log("Item 6 removed");
-      $("#6.book").remove();
-    });
-    $("#remove-book.7").click(function(){
-      console.log("Item 7 removed");
-      $("#7.book").remove();
-    });
-    $("#remove-book.8").click(function(){
-      console.log("Item 8 removed");
-      $("#8.book").remove();
-    });
-    $("#remove-book.9").click(function(){
-      console.log("Item 9 removed");
-      $("#9.book").remove();
-    });
-    $("#remove-book.10").click(function(){
-      console.log("Item 10 removed");
-      $("#10.book").remove();
-    });
-    $("#remove-book.11").click(function(){
-      console.log("Item 11 removed");
-      $("#11.book").remove();
-    });
-    $("#remove-book.12").click(function(){
-      console.log("Item 12 removed");
-      $("#12.book").remove();
-    });
-    $("#remove-book.13").click(function(){
-      console.log("Item 13 removed");
-      $("#13.book").remove();
-    });
-    $("#remove-book.14").click(function(){
-      console.log("Item 14 removed");
-      $("#14.book").remove();
-    });
-    $("#remove-book.15").click(function(){
-      console.log("Item 15 removed");
-      $("#15.book").remove();
-    });
-    $("#remove-book.16").click(function(){
-      console.log("Item 16 removed");
-      $("#16.book").remove();
-    });
-    $("#remove-book.17").click(function(){
-      console.log("Item 17 removed");
-      $("#17.book").remove();
-    });
-    $("#remove-book.18").click(function(){
-      console.log("Item 18 removed");
-      $("#18.book").remove();
-    });
-    $("#remove-book.19").click(function(){
-      console.log("Item 19 removed");
-      $("#19.book").remove();
-    });
-    $("#remove-book.20").click(function(){
-      console.log("Item 20 removed");
-      $("#20.book").remove();
-    });
-    $("#remove-book.21").click(function(){
-      console.log("Item 21 removed");
-      $("#21.book").remove();
-    });
-    $("#remove-book.22").click(function(){
-      console.log("Item 22 removed");
-      $("#22.book").remove();
-    });
-    $("#remove-book.23").click(function(){
-      console.log("Item 23 removed");
-      $("#23.book").remove();
-    });
-    $("#remove-book.24").click(function(){
-      console.log("Item 24 removed");
-      $("#24.book").remove();
-    });
-    $("#remove-book.25").click(function(){
-      console.log("Item 25 removed");
-      $("#25.book").remove();
-    });
-    $("#remove-book.26").click(function(){
-      console.log("Item 26 removed");
-      $("#26.book").remove();
-    });
-    $("#remove-book.27").click(function(){
-      console.log("Item 27 removed");
-      $("#27.book").remove();
-    });
-    $("#remove-book.28").click(function(){
-      console.log("Item 28 removed");
-      $("#28.book").remove();
-    });
-    $("#remove-book.29").click(function(){
-      console.log("Item 29 removed");
-      $("#29.book").remove();
-    });
-    $("#remove-book.30").click(function(){
-      console.log("Item 30 removed");
-      $("#30.book").remove();
-    });
-  </script>
+  }
+
+  //remove button functionality
+  $('.remove-book').click( function() {
+    removeItem(this);
+  });
+  $('.remove').click( function() {
+    removeItem(this);
+  });
+  /* Remove item from cart */
+  function removeItem(removeButton)
+  {
+    var productRow = $(removeButton).parent().parent();
+    console.log("An item is removed")
+    productRow.remove();
+  }
+
+  //save for later button functionality
+  $('.save-for-later').click( function() {
+    saveItem(this);
+  });
+  $('.add').click( function() {
+    saveItem(this);
+  });
+  /* Remove item from cart */
+  function saveItem(saveButton)
+  {
+    var productRow = $(saveButton).parent().parent();
+    console.log("An item is saved for later")
+    productRow.remove();
+  }
+</script>
 {% endblock %}
