@@ -26,9 +26,7 @@ hr {
 }
 .book-image {
   width: 15%;
-  height: 100px;
-  align: center;
-  margin-right: 50px;
+  height: 120px;
 }
 .book-information {
   width: 40%;
@@ -60,6 +58,10 @@ button {
   height: 40px;
   border-radius: 10px;
 }
+.empty-cart {
+  padding-bottom: 20px;
+  padding-left: 50px
+}
 button:hover {
   background-color: green;
 }
@@ -85,6 +87,10 @@ img {
   float: left;
   padding: 20px;
 }
+.saves{
+  width: 65%;
+  display: flex;
+}
 .labels {
   padding: 5px 30px;
   text-align: center;
@@ -106,14 +112,32 @@ img {
 .totals .shipping:before, .totals .grandtotal:before{
   content: '$  ';
 }
+.clear-cart
+{
+    padding-top: 50px;
+}
 </style>
-
+<script>
+  $(document).ready(function () {
+      $(".book-information").hover(
+          function () {
+              $(this).addClass('shadow-sm').css('cursor', 'pointer');
+          }, function () {
+              $(this).removeClass('shadow-sm');
+          }
+      ).click(function () {
+          let url = "{% url 'details' 999 %}";
+          let id = $(this).attr('id');
+          document.location.href = url.replace('999', id);
+      });
+  });
+</script>
 <div class="shopping-cart">
   <!--Title-->
   <h2>Shopping Cart</h2>
   <!--If there are any books in the user database-->
-  {% if True %}
-    <div class="labels">
+  {% if books %}
+    <div class="labels" id="col-title">
       <div class="book-image"></div>
       <div class="book-information"></div>
       <div class="book-price"><b>Price</b></div>
@@ -132,7 +156,7 @@ img {
         </div>
         <!--Book Title and Author-->
         <div class="book-information" id="book-information">
-          <h5><a style="color: green" href="{% url 'browse' %}" id="book-title">{{ book.title|truncatechars:26 }}</a></h5>
+          <h5><a style="color: green"id="book-title">{{ book.title|truncatechars:26 }}</a></h5>
           <h6 id="book-author">{{ book.author }}</h6>
           <p id="book-description">{{ book.description }}</p>
         </div>
@@ -151,13 +175,14 @@ img {
         </div>
         <!--Book Price * Quantity-->
         <div class="book-quantity-price" id="book-quantity-price">
-          {% with 2 as quantity %}
+          {% with 1 as quantity %}
           {{book.price|mul:quantity}}
           {% endwith %}
         </div>
       </div>
       {% endwith %}
     {% endfor %}<br>
+    <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
     <span>
       <div class="save-container">
         <h3>Save for Later</h3>
@@ -165,32 +190,65 @@ img {
         <hr>
         {% for book in books %}
         {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
-          <img src="{% static img_ref %}" style="padding:5px">
+          <div class="saves">
+            <div class="save-image">
+              <img src="{% static img_ref %}" style="padding:5px">
+            </div>
+            <div class="save-title">
+              <p>{{book.title}}</p>
+            </div>
+            <div class="add-to-cart">
+              <button class="add">Add to Cart</button>
+              <button class="remove">Remove</button>
+            </div>
+          </div>
         {% endwith %}
         {% endfor %}
       </div>
-      <div class="totals">
+      <div class="totals" id="tot">
         <span>
-            <p class="totals-book">Subtotal</p>
-            <p class="subtotal">{{book.price}}</p>
-            <p class="totals-book">Tax (6%)</p>
-            <p class="tax">{{subtotal|mul:.06}}</p>
-            <p class="totals-book">Shipping Rate</p>
-            <p class="shipping">5.99</p>
-            <p class="totals-book">TOTAL</p>
-            <p class="grandtotal">90.57</p>
+            <span style="overflow: hidden;">
+              <p class="totals-book" style="float: left;">Subtotal</p>
+              <p class="subtotal" style="float: right;">
+                15000
+              </p>
+            </span>
+            <span style="overflow: hidden;">
+              <p class="totals-book" style="float: left;">Tax (6%)</p>
+              <p class="tax" style="float: right;">{{subtotal|mul:.06}}</p>
+            </span>
+            <span style="overflow: hidden;">
+              <p class="totals-book" style="float: left;">Shipping Rate</p>
+              <p class="shipping" style="float: right;">5.99</p>
+            </span><hr>
+            <span style="overflow: hidden;">
+              <p class="totals-book" style="float: left;">TOTAL</p>
+              <p class="grandtotal" style="float: right;">90.57</p>
+            </span>
         </span>
         <button class="checkout" onclick="window.location.href = {% url 'checkout' %};">Check Out</button>
       </div>
     </span>
+    <div class="clear-cart">
+      <button id="clear-cart" class="{{book.id}}">Clear All</button>
+    </div>
   </div>
     <!--If user database is empty-->
   {% else %}
-    <p>Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
+    <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
   {% endif %}
   <script>
     $(document).ready(function(){
       console.log("ready");
+      $("#emp.empty-cart").hide();
+    });
+    $("#clear-cart").click(function(){
+      console.log("cart is cleared");
+      $("{{book.id}}.book").remove();
+      $("#col-title.labels").remove();
+      $("#emp.empty-cart").show(1000);
+      $("#tot.totals").remove();
+      $("#clear-cart").hide();
     });
     $("#remove-book.1").click(function(){
       console.log("Item 1 removed");
@@ -212,25 +270,105 @@ img {
       console.log("Item 5 removed");
       $("#5.book").remove();
     });
-    $("#save-for-later.1").click(function(){
-      console.log("Item 1 hidden and saved for later");
-      $("#1.book").hide();
+    $("#remove-book.6").click(function(){
+      console.log("Item 6 removed");
+      $("#6.book").remove();
     });
-    $("#save-for-later.2").click(function(){
-      console.log("Item 2 hidden and saved for later");
-      $("#2.book").hide();
+    $("#remove-book.7").click(function(){
+      console.log("Item 7 removed");
+      $("#7.book").remove();
     });
-    $("#save-for-later.3").click(function(){
-      console.log("Item 3 hidden and saved for later");
-      $("#3.book").hide();
+    $("#remove-book.8").click(function(){
+      console.log("Item 8 removed");
+      $("#8.book").remove();
     });
-    $("#save-for-later.4").click(function(){
-      console.log("Item 4 hidden and saved for later");
-      $("#4.book").hide();
+    $("#remove-book.9").click(function(){
+      console.log("Item 9 removed");
+      $("#9.book").remove();
     });
-    $("#save-for-later.5").click(function(){
-      console.log("Item 5 hidden and saved for later");
-      $("#5.book").hide();
+    $("#remove-book.10").click(function(){
+      console.log("Item 10 removed");
+      $("#10.book").remove();
+    });
+    $("#remove-book.11").click(function(){
+      console.log("Item 11 removed");
+      $("#11.book").remove();
+    });
+    $("#remove-book.12").click(function(){
+      console.log("Item 12 removed");
+      $("#12.book").remove();
+    });
+    $("#remove-book.13").click(function(){
+      console.log("Item 13 removed");
+      $("#13.book").remove();
+    });
+    $("#remove-book.14").click(function(){
+      console.log("Item 14 removed");
+      $("#14.book").remove();
+    });
+    $("#remove-book.15").click(function(){
+      console.log("Item 15 removed");
+      $("#15.book").remove();
+    });
+    $("#remove-book.16").click(function(){
+      console.log("Item 16 removed");
+      $("#16.book").remove();
+    });
+    $("#remove-book.17").click(function(){
+      console.log("Item 17 removed");
+      $("#17.book").remove();
+    });
+    $("#remove-book.18").click(function(){
+      console.log("Item 18 removed");
+      $("#18.book").remove();
+    });
+    $("#remove-book.19").click(function(){
+      console.log("Item 19 removed");
+      $("#19.book").remove();
+    });
+    $("#remove-book.20").click(function(){
+      console.log("Item 20 removed");
+      $("#20.book").remove();
+    });
+    $("#remove-book.21").click(function(){
+      console.log("Item 21 removed");
+      $("#21.book").remove();
+    });
+    $("#remove-book.22").click(function(){
+      console.log("Item 22 removed");
+      $("#22.book").remove();
+    });
+    $("#remove-book.23").click(function(){
+      console.log("Item 23 removed");
+      $("#23.book").remove();
+    });
+    $("#remove-book.24").click(function(){
+      console.log("Item 24 removed");
+      $("#24.book").remove();
+    });
+    $("#remove-book.25").click(function(){
+      console.log("Item 25 removed");
+      $("#25.book").remove();
+    });
+    $("#remove-book.26").click(function(){
+      console.log("Item 26 removed");
+      $("#26.book").remove();
+    });
+    $("#remove-book.27").click(function(){
+      console.log("Item 27 removed");
+      $("#27.book").remove();
+    });
+    $("#remove-book.28").click(function(){
+      console.log("Item 28 removed");
+      $("#28.book").remove();
+    });
+    $("#remove-book.29").click(function(){
+      console.log("Item 29 removed");
+      $("#29.book").remove();
+    });
+    $("#remove-book.30").click(function(){
+      console.log("Item 30 removed");
+      $("#30.book").remove();
     });
   </script>
 {% endblock %}
