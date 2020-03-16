@@ -42,4 +42,5 @@ urlpatterns = [
                   # class based view
                   url(r'profile/$', user_views.profile, name='profile'),
                   url(r'password_change/$', user_views.change_password, name='change_password'),
+                  url(r'payment/$', user_views.payment_info, name='payment_info'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

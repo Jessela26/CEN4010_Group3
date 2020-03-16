@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required #url restrictions
-from .forms import UserRegisterForm, UpdateUserForm
+from .forms import UserRegisterForm, UpdateUserForm, PaymentForm
 
 def register(request):
     if request.method == 'POST':#data in form
@@ -51,3 +51,21 @@ def change_password(request):
         'form': form
     }
     return render(request, 'users/change_password.html', context)
+
+@login_required
+def payment_info(request):
+    if request.method == 'POST':
+        p_form = PaymentForm(request.POST)
+        if p_form.is_valid():
+            user = p_form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, ('Payment Information Updated!'))
+            return redirect('profile')
+        else:
+            messages.error(request,('Please correct the error(s) below.'))
+    else:
+        p_form = PaymentForm(request.POST)
+    context = {
+        'p_form': p_form
+    }
+    return render(request, 'users/payment.html', context)

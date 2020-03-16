@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 
 # Create your models here.
 class Profile(models.Model):#associating User model with Profile model
@@ -9,3 +10,12 @@ class Profile(models.Model):#associating User model with Profile model
         return f'{self.user.username} Profile'
 
 
+
+class Payment(models.Model):
+    cc_number = CardNumberField('card number')
+    cc_expiry = CardExpiryField('expiration date')
+    cc_code = SecurityCodeField('security code')
+
+    def __str__(self):
+        return f'{self.user.username} Payment'
+    
