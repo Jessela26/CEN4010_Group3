@@ -19,8 +19,30 @@
 {% endblock %}
 {% block content %}
     {% load static %}
-    <br/>
-    <div class="row d-flex justify-content-center" style="padding-bottom: 5em;">
+    {% if url_name != 'search' %}
+        <div class="d-flex dropdown justify-content-around mb-1">
+            <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                {% if url_name == 'by_author' %}
+                    Author
+                {% elif url_name == 'title' %}
+                    Title
+                {% elif url_name == 'p_date_old2new' %}
+                    Old to New
+                {% elif url_name == 'p_date_new2old' %}
+                    New to Old
+                {% endif %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'by_author' %}">Author</a>
+                <a class="dropdown-item" href="{% url 'browse' %}">Title</a>
+                <a class="dropdown-item" href="{% url 'p_date_old2new' %}">Old to New</a>
+                <a class="dropdown-item" href="{% url 'p_date_new2old' %}">New to Old</a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row d-flex justify-content-center" style="padding-bottom: 2em;">
         {% for book in books %}
             {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
                 <div class="col-lg-3 col-sm-3 col-xl-3 d-flex align-items-stretch">
@@ -37,7 +59,7 @@
                 </div>
                 {% if forloop.counter|divisibleby:3 %}
                     </div>
-                    <div class="row d-flex justify-content-center" style="padding-bottom: 5em">
+                    <div class="row d-flex justify-content-center" style="padding-bottom: 2em">
                 {% endif %}
             {% endwith %}
         {% endfor %}
