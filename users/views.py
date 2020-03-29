@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required #url restrictions
-from .forms import UserRegisterForm, UpdateUserForm, PaymentForm
+from .forms import UserRegisterForm, UpdateUserForm, PaymentForm, AddressForm
 
 def register(request):
     if request.method == 'POST':#data in form
@@ -69,3 +69,22 @@ def payment_info(request):
         'p_form': p_form
     }
     return render(request, 'users/payment.html', context)
+
+@login_required
+def shipping_info(request):
+    if request.method == 'POST':
+        s_form = AddressForm(request.POST)
+        if s_form.is_valid():
+            user = s_form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, ('Shipping Information Updated!'))
+            return redirect('profile')
+        else:
+            messages.error(request,('Please correct the error(s) below.'))
+    else:
+        s_form = AddressForm(request.POST)
+    context = {
+        's_form': s_form
+    }
+    return render(request, 'users/shipping.html', context)
+
