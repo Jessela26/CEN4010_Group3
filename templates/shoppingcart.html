@@ -20,13 +20,13 @@ hr {
   flex-direction: column;
 }
 .labels {
-  padding: 5px 30px;
+  padding: 5px 100px;
   text-align: center;
   display: flex;
   height: 40px;
 }
 .book {
-  padding: 20px 30px;
+  padding: 15px 100px;
   display: flex;
   border-bottom: 1px solid lightgray;
 }
@@ -91,7 +91,9 @@ button.clear-cart:hover{
   padding: 20px;
 }
 .saves{
-  font-size: smaller;
+  font-weight: bold;
+  line-height: 60px;
+  color: forestgreen;
   display: flex;
   flex-direction: row;
   padding: 5px;
@@ -110,6 +112,20 @@ img.save-image {
   margin-left: 5px;
   margin-right: 5px;
   padding: 5px;
+}
+button.clear-save {
+  background-color: forestgreen;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  float: right;
+}
+button.clear-save:hover{
+  background-color: green;
+  font-weight: bold;
 }
 .save-buttons{
   width: 20%;
@@ -145,6 +161,18 @@ button.add:hover, button.remove:hover{
 .totals .shipping:before, .totals .grandtotal:before{
   content: '$  ';
 }
+button.checkout {
+  width: 100%;
+  height: 50px;
+  background-color: forestgreen;
+  color: white;
+  font-size: 150%;
+  border-radius: 25px;
+}
+button.checkout:hover {
+  background-color: darkgreen;
+  font-weight: bold;
+}
 .clear-cart{
   margin: 10px;
 }
@@ -174,9 +202,8 @@ button.add:hover, button.remove:hover{
         </div>
         <!--Book Title and Author-->
         <div class="book-information" id="book-information">
-          <h5><a style="color: green" class="book-title">{{ book.title }}</a></h5>
-          <h6 class="book-author">{{ book.author }}</h6>
-          <p class="book-description">{{ book.description|truncatechars:250 }}</p>
+          <h4 class="book-title"><a style="color: green" href="{% url 'details' book.id  %}">{{ book.title }}</a></h4>
+          <h5 class="book-author">{{ book.author }}</h5>
         </div>
         <!--Book Price-->
         <div class="book-price" id="book-price">
@@ -198,10 +225,10 @@ button.add:hover, button.remove:hover{
       </div>
       {% endwith %}
     {% endfor %}<br>
-    <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
+    <p class="empty-cart" id="emp-all">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
     <span>
       <div class="save-container">
-        <h3>Save for Later</h3>
+        <h3>Save for Later<button class="clear-save" id="{{book.id}}">Clear</button></h3>
         <p>You saved these items to purchase at a later date.</p>
         <hr>
         {% for book in books %}
@@ -211,8 +238,9 @@ button.add:hover, button.remove:hover{
               <img class="save-image" src="{% static img_ref %}">
             </div>
             <div class="save-title">
-              <p>{{book.title|truncatechars:30}}</p>
-              <p class="book-description">{{ book.description|truncatechars:100 }}</p>
+              <a style="color: green" href="{% url 'details' book.id  %}">
+              <p>{{book.title}}</p>
+              </a>
             </div>
             <div class="save-buttons">
               <button class="add">🛒</button>
@@ -250,36 +278,43 @@ button.add:hover, button.remove:hover{
   </div>
     <!--If user database is empty-->
   {% else %}
+  <hr>
     <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
   {% endif %}
 <script>
-  var fadeTime = 300;
-  var taxRate = 0.05;
-var shippingRate = 15.00;
+var fadeTime = 300;
+var taxRate = 0.05;
+var shippingRate = 5.99;
+  /*Hide empty cart message, this is meant to show when cart is cleared*/
   $(document).ready(function () {
-    $(".book-information").hover(
-        function () {
-            $(this).addClass('shadow-sm').css('cursor', 'pointer');
-        }, function () {
-            $(this).removeClass('shadow-sm');
-        }
-    ).click(function () {
-        let url = "{% url 'details' 999 %}";
-        let id = $(this).attr('id');
-        document.location.href = url.replace('999', id);
-    });
-  });
-  $(document).ready(function(){
     console.log("ready");
-    $("#emp.empty-cart").hide();
+    $("#emp-all.empty-cart").hide();
+    recalculateCart();
   });
+
+  /*Clear Cart button will remove the labels and the books, hide the totals and
+  clear all button, and show empty cart message*/
   $(".clear-cart").click(function(){
     console.log("cart is cleared");
     $("{{book.id}}.book").remove();
     $("#col-title.labels").remove();
-    $("#emp.empty-cart").show(1000);
+    $("#emp-all.empty-cart").show();
     $("#tot.totals").remove();
     $(".clear-cart").hide();
+  });
+
+  /*update price (book price * book quantity)*/
+  $('.book-quantity input').change( function() {
+    console.log("Quantity for an item is updated")
+    updateQuantity(this);
+  });
+
+  /*Clear saved for later buttone will remove everything in the saved for
+  later container and hide the clear all button*/
+  $(".clear-save").click(function(){
+    console.log("Saved for later is cleared");
+    $("{{book.id}}.saves").remove();
+    $(".clear-save").hide();
   });
   $('.book-quantity input').change( function() {
     updateQuantity(this);
@@ -291,13 +326,13 @@ function recalculateCart()
   var subtotal = 0;
 
   /* Sum up row totals */
-  $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.product-line-price').text());
+  $('.book').each(function () {
+    subtotal += parseFloat($(this).children('.book-quantity-price').text());
   });
 
   /* Calculate totals */
   var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
+  var shipping = shippingRate;
   var total = subtotal + tax + shipping;
 
   /* Update totals display */
@@ -306,11 +341,6 @@ function recalculateCart()
     $('.tax').html(tax.toFixed(2));
     $('.shipping').html(shipping.toFixed(2));
     $('.grandtotal').html(total.toFixed(2));
-    /*if(total == 0){
-      $('.checkout').fadeOut(fadeTime);
-    }else{
-      $('.checkout').fadeIn(fadeTime);
-    }*/
     $('.totals-value').show();
 }
   /* Update quantity */
@@ -332,6 +362,7 @@ function recalculateCart()
   //remove button functionality
   $('.remove-book').click( function() {
     removeItem(this);
+    recalculateCart();
   });
   $('.remove').click( function() {
     removeItem(this);
@@ -347,9 +378,11 @@ function recalculateCart()
   //save for later button functionality
   $('.save-for-later').click( function() {
     saveItem(this);
+    recalculateCart();
   });
   $('.add').click( function() {
     saveItem(this);
+    recalculateCart();
   });
   /* Remove item from cart */
   function saveItem(saveButton)
