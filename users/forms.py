@@ -9,6 +9,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ugettext as _
 from django.utils.translation import pgettext_lazy
+from django.utils import timezone
 
 
 
@@ -33,15 +34,19 @@ class UpdateUserForm(forms.ModelForm):
 
 def validate_ccnumber (value):
     if not value.isdigit():
-        raise ValidationError(_('%(value)s is not a valid card number'), params={'value':value},)
+        raise ValidationError(_('%(value)s is not a valid card number.'), params={'value':value},)
     else:
         return value
 
 def validate_cccode (value):
     if not value.isdigit():
-        raise ValidationError(_('%(value)s is not a valid CVV/CVC number'), params={'value':value},)
+        raise ValidationError(_('%(value)s is not a valid CVV/CVC number.'), params={'value':value},)
     else:
         return value
+
+def validate_ccexpiry(value):
+    if value < timezone.now().date():
+        raise ValidationError("This card has expired.")
         
 
 class PaymentForm(forms.ModelForm):
@@ -50,7 +55,7 @@ class PaymentForm(forms.ModelForm):
     #cc_code = SecurityCodeField(label='CVV/CVC')
 
     cc_number = forms.CharField(max_length = 20, min_length = 15, validators=[validate_ccnumber], label = 'Credit Card Number', required = False)
-    cc_expiry = forms.DateField(input_formats=['%m/%y', '%m/%Y'], help_text = "Please use the following format: <em>MM/YY</em>.", label = 'Card Expiration Date' , required = False)
+    cc_expiry = forms.DateField(input_formats=['%m/%y', '%m/%Y'], help_text = "Please use the following format: <em>MM/YY</em>.", label = 'Card Expiration Date' , required = False, validators= [validate_ccexpiry])
     cc_code = forms.CharField(max_length = 3, min_length = 3, help_text = "Please use the following format: <em>CVV or CVC</em>.", validators=[validate_cccode], label = 'CVV/CVC', required = False)
 
 
@@ -67,7 +72,7 @@ class PaymentForm(forms.ModelForm):
 
 def validate_zipcode (value):
     if not value.isdigit():
-        raise ValidationError(_('%(value)s is not a valid zip code number'), params={'value':value},)
+        raise ValidationError(_('%(value)s is not a valid zip code number.'), params={'value':value},)
     else:
         return value
 
