@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import QueryDict
 from django.shortcuts import render
 from django.urls import resolve
@@ -47,7 +48,7 @@ def author(request):
 
 def p_date_old2new(request):
     args = {}
-    books = Book.objects.order_by('date_published')
+    books = Book.objects.order_by('year', 'date_published')
     paginator = Paginator(books, 9)
     for book in books:
         if book.description.__contains__('.'):
@@ -65,7 +66,7 @@ def p_date_old2new(request):
 
 def p_date_new2old(request):
     args = {}
-    books = Book.objects.order_by('-date_published')
+    books = Book.objects.order_by('-year', '-date_published')
     paginator = Paginator(books, 9)
     for book in books:
         if book.description.__contains__('.'):
@@ -85,7 +86,8 @@ def search(request, search_term):
     search_term = QueryDict.copy(search_term)
     search_term = search_term.get('search_term')
     args = {}
-    books = Book.objects.order_by('title').filter(title__contains=search_term)
+    books = Book.objects.order_by('title').filter(Q(title__contains=search_term) | Q(genre__contains=search_term))
+
     paginator = Paginator(books, 9)
     for book in books:
         if book.description.__contains__('.'):
@@ -98,5 +100,6 @@ def search(request, search_term):
     page_obj = paginator.get_page(page_number)
     args['books'] = page_obj
     args['url_name'] = resolve(request.path_info).url_name
+    args['searchterm'] = search_term
     print(resolve(request.path_info).url_name)
     return render(request, "browse.html", args)

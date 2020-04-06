@@ -37,7 +37,7 @@
             <div class="Publisher Details">
                 {% if book.publisher %}
                     <h6>Publisher: {{ book.publisher }}</h6>
-                    <h6>Published on: {{ book.date_published }}</h6>
+                    <h6>Published on: {{ book.date_published }}/{{ book.year }}</h6>
                 {% else %}
                     <p>No publisher information for '{{ book.title }}' yet.</p>
                 {% endif %}

@@ -13,3 +13,4 @@ class Book(models.Model):
     price = models.FloatField(null=True)
     top_seller = models.BooleanField(null=True)
     genre = models.CharField(max_length=20, null=True)
+    year = models.IntegerField()

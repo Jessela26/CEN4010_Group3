@@ -52,6 +52,7 @@
                         <div class="card-body">
                             <h5 class="pt-3 card-title">{{ book.title|truncatechars:26 }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
+                            <h6 class="mb-2" style="color: darkgreen">{{ book.genre }}</h6>
                             <p class="card-text">{{ book.description }}</p>
                             <h5>${{ book.price }}</h5>
                         </div>
