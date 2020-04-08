@@ -224,7 +224,7 @@ button.checkout:hover {
       </div>
       {% endwith %}
     {% endfor %}<br>
-    <p class="empty-cart" id="emp-all">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}?page=1"><u>here</u></a> to fill your cart with books.</p>
+    <p class="empty-cart" id="emp-all">Your cart is currently empty. Browse <a style="color: green" href="{% url 'home' %}?page=1"><u>here</u></a> to fill your cart with books.</p>
     <span>
       <div class="save-container">
         <h3>Save for Later<button class="clear-save" id="{{book.id}}">Clear</button></h3>

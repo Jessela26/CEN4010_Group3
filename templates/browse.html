@@ -27,31 +27,35 @@
                 {% if url_name == 'by_author' %}
                     Author
                 {% elif url_name == 'by_author18' %}
-                    Author (View 18 Books)
+                    Author [18]
                 {% elif url_name == 'browse' or url_name == 'home' %}
                     Title
                 {% elif url_name == 'browse18' %}
-                    Title (View 18 Books)
+                    Title [18]
                 {% elif url_name == 'p_date_old2new' %}
                     Old to New
                 {% elif url_name == 'p_date_old2new18' %}
-                    Old to New (View 18 Books)
+                    Old to New [18]
                 {% elif url_name == 'p_date_new2old' %}
                     New to Old
                 {% elif url_name == 'p_date_new2old18' %}
-                    New to Old (View 18 Books)
+                    New to Old [18]
                 {% endif %}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <h6 class="dropdown-header text-muted">9 PER PAGE</h6>
                 <a class="dropdown-item" href="{% url 'by_author' %}?page=1">Author</a>
-                <a class="dropdown-item" href="{% url 'by_author18' %}?page=1">Author (View 18 Books)</a>
                 <a class="dropdown-item" href="{% url 'browse' %}?page=1">Title</a>
-                <a class="dropdown-item" href="{% url 'browse18' %}?page=1">Title (View 18 Books)</a>
                 <a class="dropdown-item" href="{% url 'p_date_old2new' %}?page=1">Old to New</a>
-                <a class="dropdown-item" href="{% url 'p_date_old2new18' %}?page=1">Old to New (View 18 Books)</a>
                 <a class="dropdown-item" href="{% url 'p_date_new2old' %}?page=1">New to Old</a>
-                <a class="dropdown-item" href="{% url 'p_date_new2old18' %}?page=1">New to Old (View 18 Books)</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header text-muted">18 PER PAGE</h6>
+                <a class="dropdown-item" href="{% url 'by_author18' %}?page=1">Author</a>
+                <a class="dropdown-item" href="{% url 'browse18' %}?page=1">Title</a>
+                <a class="dropdown-item" href="{% url 'p_date_old2new18' %}?page=1">Old to New</a>
+                <a class="dropdown-item" href="{% url 'p_date_new2old18' %}?page=1">New to Old</a>
             </div>
+        </div>
         </div>
     {% endif %}
     <div class="row d-flex justify-content-center" style="padding-bottom: 2em;">
