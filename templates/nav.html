@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm p-2 mb-2 bg-white rounded">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/" style="color: green">GeekText</a>
+        <a class="navbar-brand" href="{% url 'home' %}?page=1" style="color: green">GeekText</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,33 +27,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                {% if 'home' in request.path %}
+                {% if 'browse' in request.path %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}?page=1">Home</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                {% endif %}
-                {% if 'books' in request.path %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">My Books</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Books</a>
-                    </li>
-                {% endif %}
-                {% if 'browse' in request.path or 'author' in request.path %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'browse' %}?page=1">Browse <span
-                                class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'home' %}?page=1">Home</a>
                     </li>
                 {% endif %}
                 {% if 'wishlist' in request.path %}
@@ -129,7 +109,7 @@
     {% block content %}
     {% endblock %}
 </div>
-{% if 'browse' in request.path and not 'details' in request.path %}
+{% if 'browse' in request.path or 'home' in request.path and not 'details' in request.path %}
     <div class="d-flex justify-content-center">
         <footer style="bottom: 0" class="position-fixed">
             <ul class="pagination">

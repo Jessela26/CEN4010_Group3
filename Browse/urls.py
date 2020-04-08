@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.browse, name='home'),
     path('', views.browse, name='browse'),
     path('sort/by_author/', views.author, name='by_author'),
     path('sort/recent/', views.p_date_new2old, name='p_date_new2old'),

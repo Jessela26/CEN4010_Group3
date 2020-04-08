@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.html import escape
+
+import Browse
 from Browse.models import Book
+from Browse.views import browse
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -36,4 +39,4 @@ def checkout(request):
 
 
 def browse(request):
-    return render(request, "browse.html")
+    return Browse.views.browse(request)
