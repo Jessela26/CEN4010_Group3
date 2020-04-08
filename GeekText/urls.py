@@ -33,7 +33,7 @@ urlpatterns = [
                   url(r'^$', RedirectView.as_view(url='home', permanent=True), name='index'),
                   path('author/<str:book_author>/', include('Author.urls'), name='author'),
                   path('browse/details/<int:book_id>/', include('BookDetails.urls'), name='details'),
-                  url(r'register/$', user_views.register, name='register'),
+                  url(r'signup/$', user_views.register, name='register'),
                   url(r'login/$',
                       auth_views.LoginView.as_view(template_name='users/login.html', redirect_authenticated_user=True),
                       name='login'),
