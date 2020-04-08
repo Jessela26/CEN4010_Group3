@@ -10,7 +10,7 @@ def homepage(request):
     return render(request, "homepage.html")
 
 
-def wishlist(request):
+def wishlists(request):
     title = request.GET.get('title')
     author = request.GET.get('author')
 
