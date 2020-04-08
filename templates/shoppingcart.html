@@ -4,7 +4,6 @@
 {% block page_title %}
     <title>GeekText - Cart</title>
 {% endblock %}
-
 {% block content %}
 <style media="screen">
 hr {
@@ -182,7 +181,7 @@ button.checkout:hover {
   <!--Title-->
   <h2>Shopping Cart</h2>
   <!--If there are any books in the user database-->
-  {% if books %}
+  {% if request.user.is_authenticated %}
     <div class="labels" id="col-title">
       <div class="book-image"></div>
       <div class="book-information"></div>
@@ -282,16 +281,15 @@ button.checkout:hover {
     <p class="empty-cart" id="emp">Your cart is currently empty. Browse <a style="color: green" href="{% url 'browse' %}"><u>here</u></a> to fill your cart with books.</p>
   {% endif %}
 <script>
-var fadeTime = 300;
-var taxRate = 0.05;
-var shippingRate = 5.99;
+  var fadeTime = 300;
+  var taxRate = 0.05;
+  var shippingRate = 5.99;
   /*Hide empty cart message, this is meant to show when cart is cleared*/
   $(document).ready(function () {
     console.log("ready");
     $("#emp-all.empty-cart").hide();
     recalculateCart();
   });
-
   /*Clear Cart button will remove the labels and the books, hide the totals and
   clear all button, and show empty cart message*/
   $(".clear-cart").click(function(){
@@ -302,13 +300,11 @@ var shippingRate = 5.99;
     $("#tot.totals").remove();
     $(".clear-cart").hide();
   });
-
   /*update price (book price * book quantity)*/
   $('.book-quantity input').change( function() {
     console.log("Quantity for an item is updated")
     updateQuantity(this);
   });
-
   /*Clear saved for later buttone will remove everything in the saved for
   later container and hide the clear all button*/
   $(".clear-save").click(function(){
@@ -319,30 +315,26 @@ var shippingRate = 5.99;
   $('.book-quantity input').change( function() {
     updateQuantity(this);
   });
-
   /* Recalculate cart */
-function recalculateCart()
-{
-  var subtotal = 0;
-
-  /* Sum up row totals */
-  $('.book').each(function () {
-    subtotal += parseFloat($(this).children('.book-quantity-price').text());
-  });
-
-  /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = shippingRate;
-  var total = subtotal + tax + shipping;
-
-  /* Update totals display */
-  $('.totals-value')
-    $('.subtotal').html(subtotal.toFixed(2));
-    $('.tax').html(tax.toFixed(2));
-    $('.shipping').html(shipping.toFixed(2));
-    $('.grandtotal').html(total.toFixed(2));
-    $('.totals-value').show();
-}
+  function recalculateCart()
+  {
+    var subtotal = 0;
+    /* Sum up row totals */
+    $('.book').each(function () {
+      subtotal += parseFloat($(this).children('.book-quantity-price').text());
+    });
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = shippingRate;
+    var total = subtotal + tax + shipping;
+    /* Update totals display */
+    $('.totals-value')
+      $('.subtotal').html(subtotal.toFixed(2));
+      $('.tax').html(tax.toFixed(2));
+      $('.shipping').html(shipping.toFixed(2));
+      $('.grandtotal').html(total.toFixed(2));
+      $('.totals-value').show();
+  }
   /* Update quantity */
   function updateQuantity(quantityInput)
   {
@@ -351,45 +343,62 @@ function recalculateCart()
     var price = parseFloat(productRow.children('.book-price').text());
     var quantity = $(quantityInput).val();
     var linePrice = price * quantity;
-
     /* Update line price display and recalc cart totals */
     productRow.children('.book-quantity-price').each(function () {
         $(this).text(linePrice.toFixed(2));
         recalculateCart();
     });
   }
-
   //remove button functionality
   $('.remove-book').click( function() {
     removeItem(this);
     recalculateCart();
+    console.log("An item is removed from the cart.");
   });
+  //Remove item from the saved for later
   $('.remove').click( function() {
     removeItem(this);
+    console.log("An item is removed from the saved for later.");
   });
   /* Remove item from cart */
   function removeItem(removeButton)
   {
     var productRow = $(removeButton).parent().parent();
-    console.log("An item is removed")
     productRow.remove();
   }
-
   //save for later button functionality
   $('.save-for-later').click( function() {
     saveItem(this);
     recalculateCart();
+    console.log("An item is saved for later.");
   });
+  //add to cart button functionality
   $('.add').click( function() {
-    saveItem(this);
+    addItem(this);
     recalculateCart();
+    console.log("An item is added to cart.");
   });
   /* Remove item from cart */
   function saveItem(saveButton)
   {
     var productRow = $(saveButton).parent().parent();
-    console.log("An item is saved for later")
     productRow.remove();
+  }
+  /* Remove item from saved for later */
+  function addItem(saveButton)
+  {
+    var productRow = $(saveButton).parent().parent();
+    productRow.remove();
+  }
+  /* Add saved book to shopping cart */
+  function addToCart(title, author, price, quantity) {
+    var bookProduct = {};
+    bookProduct.Name = name;
+    bookProduct.Author = author;
+    bookProduct.Price = price;
+    bookProduct.Quantity = quantity;
+    books.push(bookProduct);
+    recalculateCart();
   }
 </script>
 {% endblock %}
