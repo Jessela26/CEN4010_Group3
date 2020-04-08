@@ -21,6 +21,7 @@
         <div class="right-column">
             <div class="description" style="color: black !important;">
                 <h1>{{ book.title }}</h1>
+                <p>Genre: Textbook</p>
                 <h3>By: <a href="{% url 'author' book.author %}">{{ book.author }}</a></h3>
                 <p>{{ book.description }}</p>
             </div>
@@ -37,7 +38,7 @@
             <div class="Publisher Details">
                 {% if book.publisher %}
                     <h6>Publisher: {{ book.publisher }}</h6>
-                    <h6>Published on: {{ book.date_published }}/{{ book.year }}</h6>
+                    <h6>Published on: {{ book.date_published }}</h6>
                 {% else %}
                     <p>No publisher information for '{{ book.title }}' yet.</p>
                 {% endif %}
@@ -48,14 +49,22 @@
                 <hr style="margin-left: 10px; margin-right: 10px">
                 <h3>Price: ${{ book.price }}</h3>
                 <div class="product-price">
-                    <button class="btn btn-success">Add to cart</button>&nbsp;
+                  {% if request.user.is_authenticated %}
+                    <button class="btn btn-success">Add to Cart</button>&nbsp;
+                    {% else %}
+                    <button class="btn btn-success" onclick = "window.location.href ={% url 'login' %}" >Add to Cart</button>&nbsp;
+                    {% endif %}
                     <div class="dropdown">
+                      {% if request.user.is_authenticated %}
                         <button onclick="sendToWishlist()" class="btn btn-info">Add to Wishlist</button>
                         <div id="myDropdown" class="dropdown-content">
                             <a href="#">Wishlist 1</a>
                             <a href="#">Wishlist 2</a>
                             <a href="#">Wishlist 3</a>
                         </div>
+                        {% else %}
+                        <button onclick="window.location.href ={% url 'login' %}" class="btn btn-info">Add to Wishlist</button>
+                        {% endif %}
                     </div>
 
                     <script>
