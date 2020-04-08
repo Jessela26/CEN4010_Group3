@@ -42,3 +42,8 @@ class Address(models.Model):
 
     def __str__(self):
         return self.address_1
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    wishlist = models.CharField(max_length=100000)
