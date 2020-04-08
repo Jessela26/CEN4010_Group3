@@ -27,7 +27,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                {% if 'browse' in request.path %}
+                {% if 'browse' in request.path or 'home' in request.path %}
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'home' %}?page=1">Home</a>
                     </li>
@@ -38,11 +38,11 @@
                 {% endif %}
                 {% if 'wishlist' in request.path %}
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlists</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlist</a>
+                        <a class="nav-link" href="{% url 'wishlist' %}">Wishlists</a>
                     </li>
                 {% endif %}
             </ul>
@@ -50,7 +50,8 @@
                 <form action="{% url 'search' %}" class="form-inline my-2 my-lg-0 mr-3" method="post">
                     {% csrf_token %}
                     <input id="search_term" name="search_term" class="form-control mr-sm-2" type="search"
-                           {% if not searchterm %} placeholder="Search for books" {% else %} value={{ searchterm }} {% endif %} aria-label="Search">
+                            {% if not searchterm %}
+                           placeholder="Search for books" {% else %} value={{ searchterm }} {% endif %} aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {% if 'cart' in request.path %}
@@ -109,7 +110,7 @@
     {% block content %}
     {% endblock %}
 </div>
-{% if 'browse' in request.path or 'home' in request.path and not 'details' in request.path %}
+{% if 'browse' in request.path and not 'details' in request.path %}
     <div class="d-flex justify-content-center">
         <footer style="bottom: 0" class="position-fixed">
             <ul class="pagination">
