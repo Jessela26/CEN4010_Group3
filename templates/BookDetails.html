@@ -21,7 +21,6 @@
         <div class="right-column">
             <div class="description" style="color: black !important;">
                 <h1>{{ book.title }}</h1>
-                <p>Genre: Textbook</p>
                 <h3>By: <a href="{% url 'author' book.author %}">{{ book.author }}</a></h3>
                 <p>{{ book.description }}</p>
             </div>
