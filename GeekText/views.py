@@ -5,7 +5,7 @@ from django.utils.html import escape
 import Browse
 from Browse.models import Book
 from Browse.views import browse
-from users.models import ShoppingCart, User
+
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -40,8 +40,9 @@ def checkout(request):
     shopping_cart: [Book] = []
     cart_total: int = 0
     if request.user.is_authenticated:
-        for book_id in request.user.shoppingcart.shopping_cart.split():
-            shopping_cart += Book.objects.filter(pk=book_id)
+        if request.user.shoppingcart is not None:
+            for book_id in request.user.shoppingcart.shopping_cart.split():
+                shopping_cart += Book.objects.filter(pk=book_id)
     for book in shopping_cart:
         cart_total += book.price
     args['cart_size'] = len(shopping_cart)
