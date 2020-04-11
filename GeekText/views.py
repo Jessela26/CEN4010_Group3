@@ -36,7 +36,18 @@ def cart(request):
 
 
 def checkout(request):
-    return render(request, "checkout.html")
+    args = {}
+    shopping_cart: [Book] = []
+    cart_total: int = 0
+    if request.user.is_authenticated:
+        for book_id in request.user.shoppingcart.shopping_cart.split():
+            shopping_cart += Book.objects.filter(pk=book_id)
+    for book in shopping_cart:
+        cart_total += book.price
+    args['cart_size'] = len(shopping_cart)
+    args['shopping_cart'] = shopping_cart
+    args['total_price'] = cart_total
+    return render(request, "checkout.html", args)
 
 
 def browse(request):
