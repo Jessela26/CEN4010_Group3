@@ -17,5 +17,6 @@ urlpatterns = [
     path('sort/price_lth18', views.price_low_to_high18, name='p_lth18'),
     path('sort/price_htl', views.price_high_to_low, name='p_htl'),
     path('sort/price_htl18', views.price_high_to_low18, name='p_htl18'),
+    path('sort/by_genre/<str:book_genre>', views.by_genre, name='by_genre'),
     path('search/', views.browse, name='search')
 ]
