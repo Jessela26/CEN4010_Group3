@@ -45,7 +45,7 @@ class Address(models.Model):
 
 
 class Wishlist(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     wishlist = models.CharField(max_length=100000)
     wishlist2 = models.CharField(max_length=100000)
     wishlist3 = models.CharField(max_length=100000)

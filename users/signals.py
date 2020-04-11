@@ -16,17 +16,3 @@ def save_profile(sender, instance, **kwargs):
 def create_payment(sender, instance, created, **kwargs):
     if created:
         Payment.objects.create(user=instance)
-
-@receiver(post_save, sender = User)
-def save_payment(sender, instance, **kwargs):
-    instance.address.save()
-
-@receiver(post_save, sender = User)
-def create_address(sender, instance, created, **kwargs):
-    if created:
-        Address.objects.create(user=instance)
-
-@receiver(post_save, sender = User)
-def save_address(sender, instance, **kwargs):
-    instance.address.save()
-    
