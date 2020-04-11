@@ -61,6 +61,7 @@ class PaymentForm(forms.ModelForm):
 
     class Meta:
         model = Payment
+        model.user = User
         fields = ['cc_number', 'cc_expiry','cc_code']
 
 #class PaymentForm2(forms.ModelForm):
@@ -391,6 +392,5 @@ class AddressForm(forms.ModelForm):
 
     class Meta:
         model = Address
+        model.user = User
         fields = ['address_1','address_2','city','state','zip_code', 'country']
-
-
