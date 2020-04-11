@@ -5,6 +5,7 @@ from django.utils.html import escape
 import Browse
 from Browse.models import Book
 from Browse.views import browse
+from users.models import ShoppingCart, User
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -22,15 +23,15 @@ def wishlists(request):
 
 def cart(request):
     args = {}
-    books = Book.objects.all()
-    for book in books:
-        if book.description.__contains__('.'):
-            book.description = book.description.split('.', 1)[0] + '.'
-        if book.description.__contains__('!'):
-            book.description = book.description.split('!', 1)[0] + '!'
-        if book.description.__contains__('?'):
-            book.description = book.description.split('?', 1)[0] + '?'
-    args['books'] = books
+    books: [Book] = []
+    saved: [Book] = []
+    if request.user.is_authenticated:
+        for book_id in request.user.shoppingcart.shopping_cart.split():
+            books += Book.objects.filter(pk=book_id)
+        for book_id in request.user.shoppingcart.save_for_later.split():
+            saved += Book.objects.filter(pk=book_id)
+    args['shopping_cart'] = books
+    args['saved_books'] = saved
     return render(request, "shoppingcart.html", args)
 
 

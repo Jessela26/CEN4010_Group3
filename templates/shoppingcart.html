@@ -191,7 +191,7 @@ button.checkout:hover {
       <div class="book-quantity-price"><b>Total</b></div>
     </div><hr>
       <!--For each book in user database-->
-    {% for book in books %}
+    {% for book in shopping_cart %}
       {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
       <!--Shopping list test-->
       <div class="book" id="{{ book.id }}">
@@ -230,7 +230,7 @@ button.checkout:hover {
         <h3>Save for Later<button class="clear-save" id="{{book.id}}">Clear</button></h3>
         <p>You saved these items to purchase at a later date.</p>
         <hr>
-        {% for book in books %}
+        {% for book in saved_books %}
         {% with 'Books/img/'|add:book.title|add:'.jpg' as img_ref %}
           <div class="saves">
             <div class="save-image">
