@@ -20,7 +20,18 @@
     {% csrf_token %}
     <fieldset class="form-group">
         <legend class="border-bottom mb-4">Add Payment Information</legend>
-        {{ p_form|crispy }} <!--crispy form styling --> 
+         <!--crispy form styling --> 
+        <div class="form-row">
+            <div class="form-group col-md-5 mb-0">
+                {{ p_form.cc_number|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ p_form.cc_expiry|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 mb-0">
+                {{ p_form.cc_code|as_crispy_field }}
+            </div>
+        </div>
     </fieldset>
         <div class="form-group">
             <button class="btn btn-success" type="submit">Update Payment Info</button>
