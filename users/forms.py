@@ -394,5 +394,3 @@ class AddressForm(forms.ModelForm):
         model = Address
         model.user = User
         fields = ['address_1','address_2','city','state','zip_code', 'country']
-
-

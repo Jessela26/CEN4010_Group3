@@ -49,3 +49,9 @@ class Wishlist(models.Model):
     wishlist = models.CharField(max_length=100000)
     wishlist2 = models.CharField(max_length=100000)
     wishlist3 = models.CharField(max_length=100000)
+
+
+class ShoppingCart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+    shopping_cart = models.CharField(max_length=100000)
+    save_for_later = models.CharField(max_length=100000)
