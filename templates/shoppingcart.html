@@ -180,8 +180,9 @@ button.checkout:hover {
 <div class="shopping-cart">
   <!--Title-->
   <h2>Shopping Cart</h2>
-  <!--If there are any books in the user database-->
-  {% if request.user.is_authenticated %}
+  <!--If there are any books in the user database (if request.user.is_authenticated)-->
+
+  {% if books or request.user.is_authenticated %}
     <div class="labels" id="col-title">
       <div class="book-image"></div>
       <div class="book-information"></div>
