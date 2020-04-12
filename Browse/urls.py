@@ -19,5 +19,6 @@ urlpatterns = [
     path('sort/by_genre/<str:book_genre>', views.by_genre, name='by_genre'),
     path('sort/title_desc', views.title_desc, name='title_desc'),
     path('sort/title_desc18', views.title_desc18, name='title_desc18'),
+    path('sort/top_seller', views.top_sell, name='top_sell'),
     path('search/', views.browse, name='search')
 ]
