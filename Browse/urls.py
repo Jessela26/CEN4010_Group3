@@ -20,5 +20,9 @@ urlpatterns = [
     path('sort/title_desc', views.title_desc, name='title_desc'),
     path('sort/title_desc18', views.title_desc18, name='title_desc18'),
     path('sort/top_seller', views.top_sell, name='top_sell'),
+    path('sort/rating_ascending', views.rating_asc, name='rating_asc'),
+    path('sort/rating_ascending18', views.rating_asc18, name='rating_asc18'),
+    path('sort/rating_descending', views.rating_desc, name='rating_desc'),
+    path('sort/rating_descending18', views.rating_desc18, name='rating_desc18'),
     path('search/', views.browse, name='search')
 ]

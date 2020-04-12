@@ -20,7 +20,7 @@
 {% block content %}
     {% load static %}
     {% if url_name != 'search' %}
-        <div class="d-flex dropdown justify-content-center mb-1 h-100">
+        <div class="d-flex dropdown justify-content-center mb-1">
             <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -52,6 +52,14 @@
                     Price: High to Low
                 {% elif url_name == 'p_htl18' %}
                     Price: High to Low [18]
+                {% elif url_name == 'rating_asc' %}
+                    Rating Ascending
+                {% elif url_name == 'rating_asc18' %}
+                    Rating Ascending [18]
+                {% elif url_name == 'rating_desc' %}
+                    Rating Descending
+                {% elif url_name == 'rating_desc18' %}
+                    Rating Descending [18]
                 {% else %}
                     Sort
                 {% endif %}
@@ -65,6 +73,8 @@
                 <a class="dropdown-item" href="{% url 'p_date_new2old' %}?page=1">New to Old</a>
                 <a class="dropdown-item" href="{% url 'p_lth' %}?page=1">Price: Low to High</a>
                 <a class="dropdown-item" href="{% url 'p_htl' %}?page=1">Price: High to Low</a>
+                <a class="dropdown-item" href="{% url 'rating_asc' %}?page=1">Rating (ascending)</a>
+                <a class="dropdown-item" href="{% url 'rating_desc' %}?page=1">Rating (descending)</a>
                 <div class="dropdown-divider"></div>
                 <h6 class="dropdown-header text-muted">18 PER PAGE</h6>
                 <a class="dropdown-item" href="{% url 'by_author18' %}?page=1">Author</a>
@@ -74,10 +84,12 @@
                 <a class="dropdown-item" href="{% url 'p_date_new2old18' %}?page=1">New to Old</a>
                 <a class="dropdown-item" href="{% url 'p_lth18' %}?page=1">Price: Low to High</a>
                 <a class="dropdown-item" href="{% url 'p_htl18' %}?page=1">Price: High to Low</a>
+                <a class="dropdown-item" href="{% url 'rating_asc18' %}?page=1">Rating (ascending) [18]</a>
+                <a class="dropdown-item" href="{% url 'rating_desc18' %}?page=1">Rating (descending) [18]</a>
             </div>
-            <div class="d-flex mb-1 h-100">
+            <div class="d-flex mb-1">
                 <a class="btn btn-outline-dark" href="{% url 'top_sell' %}">Top Sellers</a>
-                <div class="d-flex dropdown mb-1 h-100">
+                <div class="d-flex dropdown mb-1">
                     <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -115,7 +127,10 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
                             <h6 class="mb-2" style="color: darkgreen">{{ book.genre }}</h6>
                             <p class="card-text">{{ book.description }}</p>
-                            <h5>${{ book.price }}</h5>
+                            <h5>
+                                ${{ book.price }}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="text-muted">Rating:</span>
+                                {{ book.rating }}
+                            </h5>
                         </div>
                     </div>
                 </div>
