@@ -267,3 +267,39 @@ def by_genre(request, book_genre):
     args['books'] = page_obj
     args['url_name'] = resolve(request.path_info).url_name
     return render(request, "browse.html", args)
+
+
+def title_desc(request):
+    args = {}
+    books = Book.objects.order_by('-title')
+    paginator = Paginator(books, 9)
+    for book in books:
+        if book.description.__contains__('.'):
+            book.description = book.description.split('.', 1)[0] + '.'
+        if book.description.__contains__('!'):
+            book.description = book.description.split('!', 1)[0] + '!'
+        if book.description.__contains__('?'):
+            book.description = book.description.split('?', 1)[0] + '?'
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    args['books'] = page_obj
+    args['url_name'] = resolve(request.path_info).url_name
+    return render(request, "browse.html", args)
+
+
+def title_desc18(request):
+    args = {}
+    books = Book.objects.order_by('-title')
+    paginator = Paginator(books, 18)
+    for book in books:
+        if book.description.__contains__('.'):
+            book.description = book.description.split('.', 1)[0] + '.'
+        if book.description.__contains__('!'):
+            book.description = book.description.split('!', 1)[0] + '!'
+        if book.description.__contains__('?'):
+            book.description = book.description.split('?', 1)[0] + '?'
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    args['books'] = page_obj
+    args['url_name'] = resolve(request.path_info).url_name
+    return render(request, "browse.html", args)

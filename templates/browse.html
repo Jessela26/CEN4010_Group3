@@ -30,6 +30,10 @@
                     Author [18]
                 {% elif url_name == 'browse' or url_name == 'home' %}
                     Title
+                {% elif url_name == 'title_desc' %}
+                    Title (descending)
+                {% elif url_name == 'title_desc18' %}
+                    Title (descending) [18]
                 {% elif url_name == 'browse18' %}
                     Title [18]
                 {% elif url_name == 'p_date_old2new' %}
@@ -56,6 +60,7 @@
                 <h6 class="dropdown-header text-muted">9 PER PAGE</h6>
                 <a class="dropdown-item" href="{% url 'by_author' %}?page=1">Author</a>
                 <a class="dropdown-item" href="{% url 'browse' %}?page=1">Title</a>
+                <a class="dropdown-item" href="{% url 'title_desc' %}?page=1">Title (descending)</a>
                 <a class="dropdown-item" href="{% url 'p_date_old2new' %}?page=1">Old to New</a>
                 <a class="dropdown-item" href="{% url 'p_date_new2old' %}?page=1">New to Old</a>
                 <a class="dropdown-item" href="{% url 'p_lth' %}?page=1">Price: Low to High</a>
@@ -64,6 +69,7 @@
                 <h6 class="dropdown-header text-muted">18 PER PAGE</h6>
                 <a class="dropdown-item" href="{% url 'by_author18' %}?page=1">Author</a>
                 <a class="dropdown-item" href="{% url 'browse18' %}?page=1">Title</a>
+                <a class="dropdown-item" href="{% url 'title_desc18' %}?page=1">Title (descending)</a>
                 <a class="dropdown-item" href="{% url 'p_date_old2new18' %}?page=1">Old to New</a>
                 <a class="dropdown-item" href="{% url 'p_date_new2old18' %}?page=1">New to Old</a>
                 <a class="dropdown-item" href="{% url 'p_lth18' %}?page=1">Price: Low to High</a>
