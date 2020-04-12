@@ -11,7 +11,9 @@
       "date_published": "10/05",
       "price": 23.99,
       "genre": "Python",
-      "year": 2012
+      "year": 2012,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -26,7 +28,9 @@
       "date_published": "01/27",
       "price": 24.99,
       "genre": "JavaScript",
-      "year": 2015
+      "year": 2015,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -41,7 +45,9 @@
       "date_published": "03/05",
       "price": 19.99,
       "genre": "Java",
-      "year": 2017
+      "year": 2017,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -56,7 +62,9 @@
       "date_published": "03/07",
       "price": 23.49,
       "genre": "Python",
-      "year": 2019
+      "year": 2019,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -71,7 +79,9 @@
       "date_published": "04/24",
       "price": 28.29,
       "genre": "General Programming",
-      "year": 2017
+      "year": 2017,
+      "rating": 1,
+      "top_seller": 1
     }
   },
   {
@@ -86,7 +96,9 @@
       "date_published": "03/01",
       "price": 23.99,
       "genre": "General Programming",
-      "year": 2017
+      "year": 2017,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -101,7 +113,9 @@
       "date_published": "03/15",
       "price": 17.99,
       "genre": "Web Development",
-      "year": 2018
+      "year": 2018,
+      "rating": 5,
+      "top_seller": 1
     }
   },
   {
@@ -116,7 +130,9 @@
       "date_published": "06/03",
       "price": 28.99,
       "genre": "General Programming",
-      "year": 2008
+      "year": 2008,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -131,7 +147,9 @@
       "date_published": "06/07",
       "price": 25.49,
       "genre": "R",
-      "year": 2015
+      "year": 2015,
+      "rating": 5,
+      "top_seller": 0
     }
   },
   {
@@ -146,7 +164,9 @@
       "date_published": "08/18",
       "price": 24.29,
       "genre": "C++",
-      "year": 2014
+      "year": 2014,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -161,7 +181,9 @@
       "date_published": "05/01",
       "price": 21.29,
       "genre": "Java",
-      "year": 2017
+      "year": 2017,
+      "rating": 5,
+      "top_seller": 1
     }
   },
   {
@@ -176,7 +198,9 @@
       "date_published": "11/07",
       "price": 24.99,
       "genre": "Android",
-      "year": 2016
+      "year": 2016,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -191,7 +215,9 @@
       "date_published": "05/09",
       "price": 22.99,
       "genre": "Android",
-      "year": 2015
+      "year": 2015,
+      "rating": 3,
+      "top_seller": 1
     }
   },
   {
@@ -206,7 +232,9 @@
       "date_published": "04/10",
       "price": 24.49,
       "genre": "Networking",
-      "year": 2018
+      "year": 2018,
+      "rating": 3,
+      "top_seller": 0
     }
   },
   {
@@ -221,7 +249,9 @@
       "date_published": "10/15",
       "price": 19.99,
       "genre": "Cybersecurity",
-      "year": 2019
+      "year": 2019,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -232,11 +262,13 @@
       "author": "Kevin Beaver",
       "author_bio": "Kevin Beaver is an independent information security consultant with more than three decades of experience. Kevin specializes in performing vulnerability and penetration testing and security consulting work for Fortune 1000 corporations, product vendors, independent software developers, universities, and government organizations. He has appeared on CNN and been quoted in The Wall Street Journal.",
       "description": "The best way to stay safe online is to stop hackers before they attack - first, by understanding their thinking and second, by ethically hacking your own site to measure the effectiveness of your security. This practical, top-selling guide will help you do both. Fully updated for Windows 8 and the latest version of Linux, Hacking For Dummies, 4th Edition explores the malicious hacker's mindset and helps you develop an ethical hacking plan (also known as penetration testing) using the newest tools and techniques.",
-      "publisher": "For Dummie",
+      "publisher": "For Dummies",
       "date_published": "07/11",
       "price": 19.99,
       "genre": "Hacking",
-      "year": 2018
+      "year": 2018,
+      "rating": 3,
+      "top_seller": 0
     }
   },
   {
@@ -251,7 +283,9 @@
       "date_published": "04/10",
       "price": 19.49,
       "genre": "Databases",
-      "year": 2018
+      "year": 2018,
+      "rating": 3,
+      "top_seller": 1
     }
   },
   {
@@ -266,7 +300,9 @@
       "date_published": "12/09",
       "price": 16.49,
       "genre": "Databases",
-      "year": 2009
+      "year": 2009,
+      "rating": 5,
+      "top_seller": 1
     }
   },
   {
@@ -281,7 +317,9 @@
       "date_published": "09/04",
       "price": 29.99,
       "genre": "Python",
-      "year": 2006
+      "year": 2006,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -296,7 +334,9 @@
       "date_published": "02/27",
       "price": 22.99,
       "genre": "Python",
-      "year": 2019
+      "year": 2019,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -311,7 +351,9 @@
       "date_published": "04/23",
       "price": 24.99,
       "genre": "Databases",
-      "year": 2019
+      "year": 2019,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -326,7 +368,9 @@
       "date_published": "01/01",
       "price": 20.99,
       "genre": "JavaScript",
-      "year": 2011
+      "year": 2011,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -341,7 +385,9 @@
       "date_published": "09/01",
       "price": 24.99,
       "genre": "General Programming",
-      "year": 1999
+      "year": 1999,
+      "rating": 4,
+      "top_seller": 0
     }
   },
   {
@@ -356,7 +402,9 @@
       "date_published": "05/10",
       "price": 14.99,
       "genre": "Life Advice",
-      "year": 2016
+      "year": 2016,
+      "rating": 3,
+      "top_seller": 0
     }
   },
   {
@@ -371,7 +419,9 @@
       "date_published": "01/18",
       "price": 20.99,
       "genre": "Life Advice",
-      "year": 2017
+      "year": 2017,
+      "rating": 2,
+      "top_seller": 0
     }
   },
   {
@@ -386,7 +436,9 @@
       "date_published": "09/16",
       "price": 20.29,
       "genre": "Life Advice",
-      "year": 2009
+      "year": 2009,
+      "rating": 1,
+      "top_seller": 0
     }
   },
   {
@@ -401,7 +453,9 @@
       "date_published": "08/16",
       "price": 28.99,
       "genre": "General Programming",
-      "year": 1993
+      "year": 1993,
+      "rating": 1,
+      "top_seller": 0
     }
   },
   {
@@ -416,7 +470,9 @@
       "date_published": "10/01",
       "price": 29.99,
       "genre": "General Programming",
-      "year": 1999
+      "year": 1999,
+      "rating": 1,
+      "top_seller": 0
     }
   },
   {
@@ -431,7 +487,9 @@
       "date_published": "08/01",
       "price": 26.99,
       "genre": "General Programming",
-      "year": 2008
+      "year": 2008,
+      "rating": 3,
+      "top_seller": 0
     }
   },
   {
@@ -446,7 +504,9 @@
       "date_published": "01/01",
       "price": 34.99,
       "genre": "Life Advice",
-      "year": 2008
+      "year": 2008,
+      "rating": 5,
+      "top_seller": 0
     }
   }
 ]
