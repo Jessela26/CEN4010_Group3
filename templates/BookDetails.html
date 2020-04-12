@@ -91,7 +91,7 @@
             &nbsp
             <div class="Rating">
                 {% if book.publisher %}
-                    <h6>Book Rating: {{ book.rating }}</h6>
+                    <h6>Book Rating: {{ book.rating }}/5</h6>
                 {% else %}
                     <p>No rating information for '{{ book.title }}' yet.</p>
                 {% endif %}
