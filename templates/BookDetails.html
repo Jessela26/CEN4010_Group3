@@ -88,6 +88,21 @@
                     </script>
                 </div>
             </div>
+            &nbsp
+            <div class="Rating">
+                {% if book.publisher %}
+                    <h6>Book Rating: {{ book.rating }}</h6>
+                {% else %}
+                    <p>No rating information for '{{ book.title }}' yet.</p>
+                {% endif %}
+            </div>
+            &nbsp
+            <form action="/action_page.php" id="usrform">
+              Name: <input type="text" name="usrname">
+              <input type="submit">
+            </form>
+            <br>
+            <textarea rows="4" cols="50" name="comment" form="usrform">Leave a comment here...</textarea>
         </div>
     </main>
 {% endblock %}
